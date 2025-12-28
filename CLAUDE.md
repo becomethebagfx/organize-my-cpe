@@ -97,9 +97,29 @@ npm run db:seed    # Seed state rules
 
 ## Git Commits
 
+- `9bef801` - fix: Update test mock to match StateRule schema
+- `80aad0b` - feat: Add deployment infrastructure and landing page comparison
+- `8138e38` - test: Add Vitest unit tests for rules engine
+- `9b7cb6b` - docs: Update CLAUDE.md with deployment progress
 - `19590a0` - chore: Add Prisma seed configuration and populate database
 - `a39de35` - feat: Complete Phase 5 - Documentation and Marketing
-- `c6e3f11` - docs: Add project CLAUDE.md for continuity
-- `16e2f0a` - fix: Remove unused variable in middleware
 - `5ca86c0` - feat: Complete Organize My CPE SaaS application
 - `38d792f` - Initial commit from Create Next App
+
+## Deploy Commands
+
+```bash
+# Vercel (recommended)
+vercel deploy --prod
+
+# Railway
+railway up
+
+# Docker
+docker build -t organize-my-cpe .
+docker run -p 3000:3000 \
+  -e DATABASE_URL="..." \
+  -e CLERK_SECRET_KEY="..." \
+  -e STRIPE_SECRET_KEY="..." \
+  organize-my-cpe
+```
