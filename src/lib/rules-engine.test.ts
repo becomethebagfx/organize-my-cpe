@@ -16,18 +16,20 @@ const createMockRule = (overrides: Partial<{
   cycleType: 'CALENDAR_YEAR',
   cycleLengthYears: 1,
   cycleStartMonth: null,
-  allowCarryover: false,
-  maxCarryoverHours: 0,
-  allowSelfStudy: true,
-  maxSelfStudyHours: null,
+  cycleStartDay: null,
+  carryoverAllowed: false,
+  maxCarryoverHours: null,
+  hasImportTemplate: false,
+  templateSchema: null,
+  manualEntryFields: null,
+  notes: null,
   boardName: 'Test Board',
   boardUrl: 'https://example.com',
   subjectMinimums: null,
-  notes: null,
   createdAt: new Date(),
   updatedAt: new Date(),
   ...overrides,
-}) as Parameters<typeof calculateCycleDates>[0]
+}) as unknown as Parameters<typeof calculateCycleDates>[0]
 
 describe('calculateCycleDates', () => {
   describe('CALENDAR_YEAR cycle', () => {
