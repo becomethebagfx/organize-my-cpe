@@ -1,0 +1,198 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User profile linked to Clerk
+model UserProfile {
+  id               String   @id @default(cuid())
+  clerkUserId      String   @unique
+  email            String
+  tier             Tier     @default(FREE)
+  stripeCustomerId String?
+  selectedStates   String[] // State codes like ["CA", "TX"]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  documents     Document[]
+  courseRecords CourseRecord[]
+  exports       Export[]
+}
+
+enum Tier {
+  FREE
+  PAID
+}
+
+// Uploaded document (PDF, CSV, XLSX, ZIP)
+model Document {
+  id           String         @id @default(cuid())
+  userId       String
+  user         UserProfile    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  storageKey   String // S3/MinIO key
+  status       DocumentStatus @default(PENDING)
+  extractedAt  DateTime?
+  errorMessage String?
+  createdAt    DateTime       @default(now())
+
+  courseRecords CourseRecord[]
+
+  @@index([userId])
+}
+
+enum DocumentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+// Extracted CPE course record
+model CourseRecord {
+  id                String         @id @default(cuid())
+  userId            String
+  user              UserProfile    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documentId        String?
+  document          Document?      @relation(fields: [documentId], references: [id], onDelete: SetNull)
+
+  // Core extracted fields
+  providerName      String?
+  courseTitle       String
+  completionDate    DateTime
+  deliveryMethod    DeliveryMethod @default(UNKNOWN)
+  fieldOfStudy      String?
+  credits           Decimal        @db.Decimal(5, 2)
+  sponsorId         String?
+  certificateNumber String?
+
+  // Extraction metadata
+  confidence        Float          @default(1.0)
+  needsReview       Boolean        @default(false)
+  rawText           String?        @db.Text
+
+  // Deduplication
+  fingerprint       String?
+  isDuplicate       Boolean        @default(false)
+  duplicateOfId     String?
+
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  @@index([userId])
+  @@index([fingerprint])
+}
+
+enum DeliveryMethod {
+  SELF_STUDY
+  LIVE
+  WEBINAR
+  HYBRID
+  UNKNOWN
+}
+
+// State CPE requirements
+model StateRule {
+  id                  String    @id @default(cuid())
+  stateCode           String    @unique // e.g., "CA", "TX"
+  stateName           String
+  boardName           String
+  boardUrl            String
+
+  // Cycle configuration
+  cycleType           CycleType
+  cycleLengthYears    Int       @default(2)
+  cycleStartMonth     Int?      // 1-12 if fixed
+  cycleStartDay       Int?
+
+  // Hour requirements
+  totalHoursRequired  Int
+  ethicsHoursRequired Int       @default(0)
+  minLiveHours        Int       @default(0)
+
+  // Subject-specific minimums (JSON for flexibility)
+  subjectMinimums     Json?     // e.g., { "accounting": 20, "auditing": 8 }
+
+  // Carryover rules
+  carryoverAllowed    Boolean   @default(false)
+  maxCarryoverHours   Int?
+
+  // Export template configuration
+  hasImportTemplate   Boolean   @default(false)
+  templateSchema      Json?     // Column mappings for state format
+  manualEntryFields   Json?     // Required fields for manual portal entry
+
+  // Additional notes
+  specialRules        String?   @db.Text
+
+  // Data provenance
+  lastVerifiedAt      DateTime
+  sourceUrls          String[]
+  version             Int       @default(1)
+
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+enum CycleType {
+  CALENDAR_YEAR  // Jan 1 - Dec 31
+  ROLLING        // From license date
+  ANNIVERSARY    // License anniversary date
+  FISCAL_YEAR    // State fiscal year (varies)
+  BIENNIAL_EVEN  // Even calendar years
+  BIENNIAL_ODD   // Odd calendar years
+}
+
+// Generated export files
+model Export {
+  id         String     @id @default(cuid())
+  userId     String
+  user       UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stateCode  String?
+  exportType ExportType
+  filename   String
+  storageKey String
+  createdAt  DateTime   @default(now())
+
+  @@index([userId])
+}
+
+enum ExportType {
+  STATE_CSV
+  STATE_XLSX
+  CANONICAL_CSV
+  CANONICAL_XLSX
+  CERTIFICATE_ZIP
+  SUMMARY_PDF
+}
+
+// Background job tracking
+model Job {
+  id         String    @id @default(cuid())
+  type       String
+  status     JobStatus @default(PENDING)
+  payload    Json
+  result     Json?
+  error      String?
+  attempts   Int       @default(0)
+  maxAttempts Int      @default(3)
+  createdAt  DateTime  @default(now())
+  startedAt  DateTime?
+  completedAt DateTime?
+
+  @@index([status])
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
