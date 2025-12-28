@@ -79,7 +79,23 @@ npm run db:seed    # Seed state rules
 5. [ ] Run `prisma db push && prisma db seed`
 6. [ ] Deploy to Vercel/Railway/DO App Platform
 
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| `docs/COMPETITIVE_ANALYSIS.md` | Competitor research and positioning |
+| `docs/MARKETING_STRATEGY.md` | SEO/AEO strategy and launch plan |
+| `docs/PRODUCTION_CHECKLIST.md` | Deployment readiness validation |
+| `docs/SECURITY_AUDIT.md` | Security review |
+
+## Stripe Configuration
+
+- **Product ID:** `prod_TgpQFGQWrrOS7o`
+- **Price ID:** `price_1SjRlJCncK0NQAfvKTjhkewE` ($9.99/year)
+- **Account:** brandonhayman.b@gmail.com (test mode)
+
 ## Git Commits
 
 - `5ca86c0` - feat: Complete Organize My CPE SaaS application
 - `16e2f0a` - fix: Remove unused variable in middleware
+- `c6e3f11` - docs: Add project CLAUDE.md for continuity

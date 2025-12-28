@@ -1,5 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 import { checkRateLimit } from '@/lib/rate-limit'
 
 // Define public routes that don't require authentication
@@ -8,12 +8,43 @@ const isPublicRoute = createRouteMatcher([
   '/sign-in(.*)',
   '/sign-up(.*)',
   '/api/stripe/webhook',
+  '/api/states', // Public endpoint for state rules
 ])
 
 // Define API routes for rate limiting
 const isApiRoute = createRouteMatcher(['/api/(.*)'])
 
-export default clerkMiddleware(async (auth, req) => {
+// Check if Clerk is configured
+const isClerkConfigured = () => {
+  return !!(
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
+    process.env.CLERK_SECRET_KEY
+  )
+}
+
+// Development middleware without Clerk
+function devMiddleware(req: NextRequest) {
+  // Rate limit API routes
+  if (isApiRoute(req)) {
+    const { allowed, resetIn } = checkRateLimit(req)
+    if (!allowed) {
+      return NextResponse.json(
+        { success: false, error: 'Too many requests. Please try again later.' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(Math.ceil(resetIn / 1000)),
+            'X-RateLimit-Remaining': '0',
+          },
+        }
+      )
+    }
+  }
+  return NextResponse.next()
+}
+
+// Production middleware with Clerk
+const clerkMiddlewareHandler = clerkMiddleware(async (auth, req) => {
   // Rate limit API routes
   if (isApiRoute(req)) {
     const { allowed, resetIn } = checkRateLimit(req)
@@ -44,6 +75,15 @@ export default clerkMiddleware(async (auth, req) => {
     return Response.redirect(signInUrl)
   }
 })
+
+export default function middleware(req: NextRequest) {
+  // Use dev middleware if Clerk is not configured
+  if (!isClerkConfigured()) {
+    console.warn('[Middleware] Clerk not configured - running in dev mode')
+    return devMiddleware(req)
+  }
+  return clerkMiddlewareHandler(req, {} as never)
+}
 
 export const config = {
   matcher: [
