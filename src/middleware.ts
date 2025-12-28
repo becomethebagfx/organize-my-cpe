@@ -16,7 +16,7 @@ const isApiRoute = createRouteMatcher(['/api/(.*)'])
 export default clerkMiddleware(async (auth, req) => {
   // Rate limit API routes
   if (isApiRoute(req)) {
-    const { allowed, remaining, resetIn } = checkRateLimit(req)
+    const { allowed, resetIn } = checkRateLimit(req)
     if (!allowed) {
       return NextResponse.json(
         { success: false, error: 'Too many requests. Please try again later.' },
