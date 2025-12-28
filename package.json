@@ -2,6 +2,9 @@
   "name": "organize-my-cpe",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "npx tsx prisma/seed-states.ts"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
