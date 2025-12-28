@@ -72,12 +72,13 @@ npm run db:seed    # Seed state rules
 
 ## Deployment Checklist
 
-1. [ ] Create Clerk app at dashboard.clerk.com
-2. [ ] Create Stripe product ($9.99/year)
+1. [ ] Create Clerk app at dashboard.clerk.com (brandonhayman.b@gmail.com)
+2. [x] Create Stripe product ($9.99/year) - `prod_TgpQFGQWrrOS7o`
 3. [ ] Configure Stripe webhook: `/api/stripe/webhook`
-4. [ ] Set all environment variables
-5. [ ] Run `prisma db push && prisma db seed`
-6. [ ] Deploy to Vercel/Railway/DO App Platform
+4. [ ] Get Stripe publishable key from dashboard
+5. [ ] Set all environment variables
+6. [x] Run `prisma db push && prisma db seed` - 51 states seeded
+7. [ ] Deploy to Vercel/Railway/DO App Platform
 
 ## Documentation
 
@@ -96,6 +97,9 @@ npm run db:seed    # Seed state rules
 
 ## Git Commits
 
-- `5ca86c0` - feat: Complete Organize My CPE SaaS application
-- `16e2f0a` - fix: Remove unused variable in middleware
+- `19590a0` - chore: Add Prisma seed configuration and populate database
+- `a39de35` - feat: Complete Phase 5 - Documentation and Marketing
 - `c6e3f11` - docs: Add project CLAUDE.md for continuity
+- `16e2f0a` - fix: Remove unused variable in middleware
+- `5ca86c0` - feat: Complete Organize My CPE SaaS application
+- `38d792f` - Initial commit from Create Next App
