@@ -52,7 +52,7 @@ const BentoCard = ({
   children?: React.ReactNode;
   className?: string;
 }) => (
-  <div className={`group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md ${className}`}>
+  <div className={`group relative rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md ${className}`}>
     <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-gray-50 mb-4">
       <Icon className="h-5 w-5 text-gray-900" />
     </div>
@@ -235,16 +235,16 @@ export default function LandingPage() {
            <p className="mt-4 text-lg text-gray-500">Powerful features wrapped in a simple interface. We handle the complexity of state boards so you don&apos;t have to.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
 
            {/* Large Card */}
            <BentoCard
              title="AI Extraction"
              description="Drag and drop your PDF certificates. Our AI instantly captures the course name, date, credit amount, and field of study."
              icon={Zap}
-             className="md:col-span-2 bg-gradient-to-br from-white to-gray-50"
+             className="md:col-span-2 bg-gradient-to-br from-white to-gray-50 overflow-hidden"
            >
-              <div className="absolute right-0 bottom-0 w-3/4 h-3/4 bg-white border-t border-l border-gray-200 rounded-tl-2xl shadow-lg p-4 translate-y-4 translate-x-4">
+              <div className="absolute right-0 bottom-0 w-3/4 h-3/4 bg-white border-t border-l border-gray-200 rounded-tl-2xl shadow-lg p-4">
                   <div className="flex items-center gap-3 mb-4">
                       <div className="h-8 w-8 bg-red-100 rounded text-red-600 flex items-center justify-center text-xs font-bold">PDF</div>
                       <div className="flex-1">
