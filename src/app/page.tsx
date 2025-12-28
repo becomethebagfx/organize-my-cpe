@@ -140,60 +140,81 @@ export default function LandingPage() {
             </Link>
           </div>
 
-          {/* Product Shot */}
+          {/* Product Shot - Realistic Dashboard Preview */}
           <div className="mt-20 relative mx-auto max-w-6xl">
             <div className="rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:rounded-2xl lg:p-4">
               <div className="relative overflow-hidden rounded-lg bg-white shadow-2xl ring-1 ring-gray-900/10">
-                 {/* Fake UI */}
-                 <div className="w-full h-[500px] bg-white flex flex-col">
+                 <div className="w-full bg-white flex flex-col">
+                    {/* Header */}
                     <div className="border-b border-gray-100 px-6 py-4 flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                            <div className="h-8 w-8 bg-gray-100 rounded-full"></div>
-                            <div className="h-4 w-32 bg-gray-100 rounded"></div>
+                            <div className="h-8 w-8 bg-black rounded-lg"></div>
+                            <span className="font-semibold text-gray-900">OrganizeMyCPE</span>
                         </div>
-                        <div className="flex gap-2">
-                             <div className="h-8 w-24 bg-black text-white text-xs flex items-center justify-center rounded-md">Export Report</div>
+                        <div className="flex gap-3 items-center">
+                             <span className="text-sm text-gray-500">John Smith, CPA</span>
+                             <div className="h-8 w-8 bg-gray-200 rounded-full"></div>
                         </div>
                     </div>
-                    <div className="flex-1 p-8 bg-gray-50/50 flex gap-8">
+                    <div className="flex">
                         {/* Sidebar */}
-                        <div className="w-64 hidden md:block space-y-4">
-                             <div className="h-4 w-20 bg-gray-200 rounded mb-6"></div>
-                             <div className="space-y-2">
-                                <div className="h-8 w-full bg-white border border-gray-200 rounded shadow-sm"></div>
-                                <div className="h-8 w-full bg-transparent rounded"></div>
-                                <div className="h-8 w-full bg-transparent rounded"></div>
+                        <div className="w-56 hidden md:block border-r border-gray-100 p-4 bg-gray-50/50">
+                             <div className="space-y-1">
+                                <div className="h-9 w-full bg-black text-white text-sm flex items-center px-3 rounded-lg font-medium">Dashboard</div>
+                                <div className="h-9 w-full text-gray-500 text-sm flex items-center px-3 rounded-lg">My Courses</div>
+                                <div className="h-9 w-full text-gray-500 text-sm flex items-center px-3 rounded-lg">Upload</div>
+                                <div className="h-9 w-full text-gray-500 text-sm flex items-center px-3 rounded-lg">Exports</div>
                              </div>
                         </div>
                         {/* Main Content */}
-                        <div className="flex-1 space-y-6">
-                            <div className="grid grid-cols-3 gap-4">
-                                <div className="h-32 bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col justify-between">
-                                    <div className="h-4 w-24 bg-gray-100 rounded"></div>
-                                    <div className="text-3xl font-bold text-gray-900">32/40</div>
+                        <div className="flex-1 p-6 bg-gray-50/30">
+                            {/* Stats */}
+                            <div className="grid grid-cols-3 gap-4 mb-6">
+                                <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                                    <div className="text-xs text-gray-500 mb-2">Credits Earned</div>
+                                    <div className="text-2xl font-bold text-gray-900">32 <span className="text-sm font-normal text-gray-400">/ 40</span></div>
+                                    <div className="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                      <div className="h-full w-4/5 bg-green-500 rounded-full"></div>
+                                    </div>
                                 </div>
-                                <div className="h-32 bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col justify-between">
-                                     <div className="h-4 w-24 bg-gray-100 rounded"></div>
-                                     <div className="text-3xl font-bold text-gray-900">12</div>
+                                <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                                     <div className="text-xs text-gray-500 mb-2">Ethics Credits</div>
+                                     <div className="text-2xl font-bold text-gray-900">4 <span className="text-sm font-normal text-gray-400">/ 4</span></div>
+                                     <div className="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                       <div className="h-full w-full bg-green-500 rounded-full"></div>
+                                     </div>
                                 </div>
-                                <div className="h-32 bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col justify-between">
-                                     <div className="h-4 w-24 bg-gray-100 rounded"></div>
-                                     <div className="text-3xl font-bold text-gray-900">2 States</div>
+                                <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                                     <div className="text-xs text-gray-500 mb-2">States Tracked</div>
+                                     <div className="text-2xl font-bold text-gray-900">NY, CA</div>
+                                     <div className="mt-2 text-xs text-green-600 font-medium">All compliant</div>
                                 </div>
                             </div>
-                            <div className="bg-white rounded-xl border border-gray-200 shadow-sm h-64 w-full p-6">
-                                <div className="flex justify-between mb-6">
-                                    <div className="h-5 w-32 bg-gray-100 rounded"></div>
-                                    <div className="h-5 w-16 bg-gray-100 rounded"></div>
+                            {/* Recent Courses Table */}
+                            <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
+                                <div className="flex justify-between items-center px-5 py-4 border-b border-gray-100">
+                                    <span className="font-medium text-gray-900">Recent Courses</span>
+                                    <button className="text-xs text-gray-500 hover:text-gray-700">View all</button>
                                 </div>
-                                <div className="space-y-3">
-                                    {[1,2,3].map(i => (
-                                        <div key={i} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
+                                <div className="divide-y divide-gray-50">
+                                    {[
+                                      { name: 'Ethics in Professional Practice', credits: '4.0', field: 'Ethics', date: 'Dec 15' },
+                                      { name: 'Advanced Tax Planning Strategies', credits: '8.0', field: 'Tax', date: 'Dec 10' },
+                                      { name: 'GAAP Update 2024', credits: '4.0', field: 'A&A', date: 'Nov 28' },
+                                    ].map((course, i) => (
+                                        <div key={i} className="flex items-center justify-between px-5 py-3">
                                             <div className="flex items-center gap-3">
-                                                <div className="h-8 w-8 rounded bg-blue-50"></div>
-                                                <div className="h-3 w-48 bg-gray-100 rounded"></div>
+                                                <div className={`h-8 w-8 rounded-lg flex items-center justify-center text-xs font-medium ${
+                                                  course.field === 'Ethics' ? 'bg-purple-50 text-purple-600' :
+                                                  course.field === 'Tax' ? 'bg-blue-50 text-blue-600' :
+                                                  'bg-green-50 text-green-600'
+                                                }`}>{course.credits}</div>
+                                                <div>
+                                                  <div className="text-sm text-gray-900">{course.name}</div>
+                                                  <div className="text-xs text-gray-400">{course.field}</div>
+                                                </div>
                                             </div>
-                                            <div className="h-3 w-12 bg-gray-100 rounded"></div>
+                                            <div className="text-xs text-gray-400">{course.date}</div>
                                         </div>
                                     ))}
                                 </div>
@@ -237,44 +258,75 @@ export default function LandingPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
 
-           {/* Large Card */}
-           <BentoCard
-             title="AI Extraction"
-             description="Drag and drop your PDF certificates. Our AI instantly captures the course name, date, credit amount, and field of study."
-             icon={Zap}
-             className="md:col-span-2 bg-gradient-to-br from-white to-gray-50 overflow-hidden"
-           >
-              <div className="absolute right-0 bottom-0 w-3/4 h-3/4 bg-white border-t border-l border-gray-200 rounded-tl-2xl shadow-lg p-4">
-                  <div className="flex items-center gap-3 mb-4">
-                      <div className="h-8 w-8 bg-red-100 rounded text-red-600 flex items-center justify-center text-xs font-bold">PDF</div>
-                      <div className="flex-1">
-                          <div className="h-2 w-24 bg-gray-200 rounded mb-1"></div>
-                          <div className="h-2 w-12 bg-gray-100 rounded"></div>
-                      </div>
-                      <ArrowRight className="text-gray-300 h-4 w-4" />
-                      <div className="h-6 w-16 bg-green-100 text-green-700 text-xs flex items-center justify-center rounded">Success</div>
-                  </div>
-                  <div className="space-y-2">
-                      <div className="flex justify-between text-xs text-gray-500 border-b border-gray-50 pb-1"><span>Course</span> <span className="text-gray-900 font-medium">Ethics 101</span></div>
-                      <div className="flex justify-between text-xs text-gray-500 border-b border-gray-50 pb-1"><span>Credits</span> <span className="text-gray-900 font-medium">2.0</span></div>
-                      <div className="flex justify-between text-xs text-gray-500"><span>Field</span> <span className="text-gray-900 font-medium">Behavioral</span></div>
-                  </div>
-              </div>
-           </BentoCard>
+           {/* Large Card - AI Extraction */}
+           <div className="group relative rounded-3xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm transition-shadow hover:shadow-md md:col-span-2">
+             <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-gray-50 mb-4">
+               <Zap className="h-5 w-5 text-gray-900" />
+             </div>
+             <h3 className="text-lg font-semibold text-gray-900">AI Extraction</h3>
+             <p className="mt-2 text-sm text-gray-500 max-w-md">Drag and drop your PDF certificates. Our AI instantly captures the course name, date, credit amount, and field of study.</p>
 
-           {/* Tall Card */}
+             {/* Demo UI - fixed positioning */}
+             <div className="mt-6 bg-white border border-gray-200 rounded-xl shadow-sm p-5">
+               <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
+                 <div className="h-12 w-12 bg-red-50 rounded-lg text-red-600 flex items-center justify-center text-sm font-bold border border-red-100">PDF</div>
+                 <div className="flex-1">
+                   <div className="text-sm font-medium text-gray-900">Ethics_Certificate_2024.pdf</div>
+                   <div className="text-xs text-gray-400">Uploaded just now</div>
+                 </div>
+                 <ArrowRight className="text-gray-300 h-5 w-5 mx-2" />
+                 <div className="h-7 px-3 bg-green-50 text-green-700 text-xs font-medium flex items-center justify-center rounded-full border border-green-100">Extracted</div>
+               </div>
+               <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                 <div>
+                   <div className="text-xs text-gray-400 mb-1">Course</div>
+                   <div className="text-sm font-medium text-gray-900">Ethics 101</div>
+                 </div>
+                 <div>
+                   <div className="text-xs text-gray-400 mb-1">Credits</div>
+                   <div className="text-sm font-medium text-gray-900">2.0</div>
+                 </div>
+                 <div>
+                   <div className="text-xs text-gray-400 mb-1">Field</div>
+                   <div className="text-sm font-medium text-gray-900">Behavioral Ethics</div>
+                 </div>
+                 <div>
+                   <div className="text-xs text-gray-400 mb-1">Date</div>
+                   <div className="text-sm font-medium text-gray-900">Dec 15, 2024</div>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           {/* Tall Card - All 50 States */}
            <div className="group relative overflow-hidden rounded-3xl border border-gray-800 bg-black p-6 shadow-sm transition-shadow hover:shadow-md md:row-span-2 text-white">
              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-700 bg-gray-900 mb-4">
                <Globe className="h-5 w-5 text-white" />
              </div>
-             <h3 className="text-lg font-semibold">All 50 States</h3>
-             <p className="mt-2 text-sm text-gray-400">We track rules for every state board, including special requirements like Ethics.</p>
-             <div className="mt-6 grid grid-cols-2 gap-2 opacity-50">
-                {['NY', 'CA', 'TX', 'FL', 'IL', 'PA', 'OH', 'GA', 'NC', 'MI'].map(state => (
-                    <div key={state} className="bg-gray-800 rounded p-2 text-center text-xs font-mono">{state}</div>
+             <h3 className="text-lg font-semibold">All 50 States + DC</h3>
+             <p className="mt-2 text-sm text-gray-400">We track unique CPE rules for every state board, including Ethics, A&A, and technical requirements.</p>
+
+             {/* State grid showing all states */}
+             <div className="mt-6 grid grid-cols-5 gap-1.5">
+                {['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL',
+                  'GA','HI','ID','IL','IN','IA','KS','KY','LA','ME',
+                  'MD','MA','MI','MN','MS','MO','MT','NE','NV','NH',
+                  'NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI',
+                  'SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'].map((state, i) => (
+                    <div
+                      key={state}
+                      className={`rounded px-1 py-1.5 text-center text-[10px] font-mono transition-all ${
+                        ['NY', 'CA', 'TX', 'FL', 'IL'].includes(state)
+                          ? 'bg-white text-black font-medium'
+                          : 'bg-gray-800/80 text-gray-400'
+                      }`}
+                    >
+                      {state}
+                    </div>
                 ))}
              </div>
-             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+
+             <p className="mt-4 text-xs text-gray-500">Highlighted: Most common jurisdictions</p>
            </div>
 
            {/* Small Card */}
