@@ -256,6 +256,72 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Comparison */}
+      <section className="container mx-auto px-4 py-20">
+        <h2 className="text-center text-3xl font-bold mb-4">
+          Why Choose Organize My CPE?
+        </h2>
+        <p className="text-center text-muted-foreground mb-12">
+          Compare us to the alternatives
+        </p>
+        <div className="max-w-4xl mx-auto overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left py-3 px-4">Feature</th>
+                <th className="text-center py-3 px-4 bg-primary/5 font-bold">Organize My CPE</th>
+                <th className="text-center py-3 px-4">Spreadsheets</th>
+                <th className="text-center py-3 px-4">Other Trackers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b">
+                <td className="py-3 px-4">Price</td>
+                <td className="text-center py-3 px-4 bg-primary/5 font-semibold text-green-600">$9.99/year</td>
+                <td className="text-center py-3 px-4">Free</td>
+                <td className="text-center py-3 px-4">$19.99+/year</td>
+              </tr>
+              <tr className="border-b">
+                <td className="py-3 px-4">AI Certificate Extraction</td>
+                <td className="text-center py-3 px-4 bg-primary/5">
+                  <CheckCircle className="h-5 w-5 text-green-600 inline" />
+                </td>
+                <td className="text-center py-3 px-4 text-muted-foreground">Manual entry</td>
+                <td className="text-center py-3 px-4 text-muted-foreground">Limited</td>
+              </tr>
+              <tr className="border-b">
+                <td className="py-3 px-4">Works with Any Provider</td>
+                <td className="text-center py-3 px-4 bg-primary/5">
+                  <CheckCircle className="h-5 w-5 text-green-600 inline" />
+                </td>
+                <td className="text-center py-3 px-4">
+                  <CheckCircle className="h-5 w-5 text-green-600 inline" />
+                </td>
+                <td className="text-center py-3 px-4 text-muted-foreground">Their courses only</td>
+              </tr>
+              <tr className="border-b">
+                <td className="py-3 px-4">50-State Compliance Rules</td>
+                <td className="text-center py-3 px-4 bg-primary/5">
+                  <CheckCircle className="h-5 w-5 text-green-600 inline" />
+                </td>
+                <td className="text-center py-3 px-4 text-muted-foreground">DIY research</td>
+                <td className="text-center py-3 px-4">
+                  <CheckCircle className="h-5 w-5 text-green-600 inline" />
+                </td>
+              </tr>
+              <tr className="border-b">
+                <td className="py-3 px-4">State-Specific Exports</td>
+                <td className="text-center py-3 px-4 bg-primary/5">
+                  <CheckCircle className="h-5 w-5 text-green-600 inline" />
+                </td>
+                <td className="text-center py-3 px-4 text-muted-foreground">Manual formatting</td>
+                <td className="text-center py-3 px-4">Limited formats</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       {/* Trust */}
       <section className="bg-muted/50 py-12">
         <div className="container mx-auto px-4">
