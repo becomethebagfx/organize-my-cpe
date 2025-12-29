@@ -6,6 +6,17 @@ import {
   generateComplianceSummary,
 } from '@/lib/export-generator'
 import { getOrCreateUserProfile } from '@/lib/auth'
+import { ExportType } from '@prisma/client'
+
+// Valid export types from Prisma enum
+const VALID_EXPORT_TYPES: Set<string> = new Set([
+  'STATE_CSV',
+  'STATE_XLSX',
+  'CANONICAL_CSV',
+  'CANONICAL_XLSX',
+  'CERTIFICATE_ZIP',
+  'SUMMARY_PDF',
+])
 
 export async function POST(
   request: NextRequest,
@@ -16,6 +27,14 @@ export async function POST(
     const userProfile = await getOrCreateUserProfile()
 
     const exportType = type.toUpperCase()
+
+    // Validate export type before processing
+    if (!VALID_EXPORT_TYPES.has(exportType)) {
+      return NextResponse.json(
+        { success: false, error: `Invalid export type: ${type}. Valid types: ${Array.from(VALID_EXPORT_TYPES).join(', ')}` },
+        { status: 400 }
+      )
+    }
 
     // Parse optional state code from query params
     const url = new URL(request.url)
@@ -79,9 +98,14 @@ export async function POST(
         break
 
       case 'SUMMARY_PDF':
-      case 'SUMMARY_XLSX':
         result = await generateComplianceSummary(userProfile.id)
         break
+
+      case 'CERTIFICATE_ZIP':
+        return NextResponse.json(
+          { success: false, error: 'Certificate ZIP export not yet implemented' },
+          { status: 501 }
+        )
 
       default:
         return NextResponse.json(
@@ -90,12 +114,12 @@ export async function POST(
         )
     }
 
-    // Save export record
+    // Save export record (exportType is already validated)
     await db.export.create({
       data: {
         userId: userProfile.id,
         stateCode,
-        exportType: exportType as 'STATE_CSV' | 'STATE_XLSX' | 'CANONICAL_CSV' | 'CANONICAL_XLSX' | 'CERTIFICATE_ZIP' | 'SUMMARY_PDF',
+        exportType: exportType as ExportType,
         filename: result.filename,
         storageKey: `exports/${userProfile.id}/${result.filename}`,
       },

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { getOrCreateUserProfile } from '@/lib/auth'
 
 export async function GET() {
   try {
@@ -33,19 +34,7 @@ export async function GET() {
 // Update user's selected states
 export async function PUT(request: NextRequest) {
   try {
-    // TODO: Get user from Clerk auth
-    const userId = request.headers.get('x-user-id') || 'demo-user'
-
-    const userProfile = await db.userProfile.findUnique({
-      where: { clerkUserId: userId },
-    })
-
-    if (!userProfile) {
-      return NextResponse.json(
-        { success: false, error: 'User not found' },
-        { status: 404 }
-      )
-    }
+    const userProfile = await getOrCreateUserProfile()
 
     const { states } = await request.json()
 
@@ -67,6 +56,12 @@ export async function PUT(request: NextRequest) {
     })
   } catch (error) {
     console.error('Update states error:', error)
+    if (error instanceof Error && error.message === 'Unauthorized') {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
     return NextResponse.json(
       { success: false, error: 'Failed to update states' },
       { status: 500 }
