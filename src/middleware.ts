@@ -9,6 +9,7 @@ const isPublicRoute = createRouteMatcher([
   '/sign-up(.*)',
   '/privacy',
   '/terms',
+  '/faq',
   '/onboarding',
   '/api/stripe/webhook',
   '/api/states', // Public endpoint for state rules
