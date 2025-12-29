@@ -152,7 +152,7 @@ export default function FAQPage() {
         <div className="max-w-3xl mx-auto mt-16 text-center bg-primary/5 rounded-2xl p-8">
           <h2 className="text-2xl font-bold mb-4">Still have questions?</h2>
           <p className="text-muted-foreground mb-6">
-            Can't find what you're looking for? Start tracking your CPE for free and see for yourself.
+            Can&apos;t find what you&apos;re looking for? Start tracking your CPE for free and see for yourself.
           </p>
           <div className="flex gap-4 justify-center">
             <Button asChild size="lg">
