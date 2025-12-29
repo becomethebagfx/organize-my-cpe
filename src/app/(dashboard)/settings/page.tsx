@@ -1,12 +1,24 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useUser } from "@clerk/nextjs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Search, Save, Loader2 } from "lucide-react"
+import { Search, Save, Loader2, Download, Trash2, AlertTriangle } from "lucide-react"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 // All 50 US states for selection
 const US_STATES = [
@@ -64,10 +76,13 @@ const US_STATES = [
 ]
 
 export default function SettingsPage() {
+  const { user } = useUser()
   const [selectedStates, setSelectedStates] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [exporting, setExporting] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     // Load saved states from localStorage for now
@@ -76,6 +91,61 @@ export default function SettingsPage() {
       setSelectedStates(JSON.parse(saved))
     }
   }, [])
+
+  const handleUpgrade = async () => {
+    try {
+      const response = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      })
+      const data = await response.json()
+      if (data.url) {
+        window.location.href = data.url
+      }
+    } catch (error) {
+      console.error("Failed to start checkout:", error)
+    }
+  }
+
+  const handleExport = async () => {
+    setExporting(true)
+    try {
+      const response = await fetch("/api/exports/all")
+      if (response.ok) {
+        const blob = await response.blob()
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement("a")
+        a.href = url
+        a.download = "cpe-data-export.csv"
+        document.body.appendChild(a)
+        a.click()
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+      }
+    } catch (error) {
+      console.error("Failed to export data:", error)
+    } finally {
+      setExporting(false)
+    }
+  }
+
+  const handleDeleteAll = async () => {
+    setDeleting(true)
+    try {
+      const response = await fetch("/api/user/data", {
+        method: "DELETE",
+      })
+      if (response.ok) {
+        // Clear local storage and reload
+        localStorage.removeItem("cpe-selected-states")
+        window.location.href = "/dashboard"
+      }
+    } catch (error) {
+      console.error("Failed to delete data:", error)
+    } finally {
+      setDeleting(false)
+    }
+  }
 
   const toggleState = (code: string) => {
     setSelectedStates((prev) =>
@@ -181,7 +251,7 @@ export default function SettingsPage() {
       </Card>
 
       {/* Account */}
-      <Card>
+      <Card id="billing">
         <CardHeader>
           <CardTitle>Account</CardTitle>
           <CardDescription>Manage your account settings</CardDescription>
@@ -189,13 +259,13 @@ export default function SettingsPage() {
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label>Email</Label>
-            <Input value="demo@example.com" disabled />
+            <Input value={user?.primaryEmailAddress?.emailAddress || ""} disabled />
           </div>
           <div className="space-y-2">
             <Label>Plan</Label>
             <div className="flex items-center gap-4">
               <span className="text-sm">Free Plan</span>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={handleUpgrade}>
                 Upgrade to Pro
               </Button>
             </div>
@@ -217,7 +287,10 @@ export default function SettingsPage() {
                 Download all your courses and documents
               </p>
             </div>
-            <Button variant="outline">Export</Button>
+            <Button variant="outline" onClick={handleExport} disabled={exporting} className="gap-2">
+              {exporting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+              {exporting ? "Exporting..." : "Export"}
+            </Button>
           </div>
           <div className="flex items-center justify-between pt-4 border-t">
             <div>
@@ -226,7 +299,36 @@ export default function SettingsPage() {
                 Permanently delete all your data
               </p>
             </div>
-            <Button variant="destructive">Delete</Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" className="gap-2">
+                  <Trash2 className="h-4 w-4" />
+                  Delete
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="flex items-center gap-2">
+                    <AlertTriangle className="h-5 w-5 text-destructive" />
+                    Are you absolutely sure?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete all your
+                    courses, documents, and compliance data from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={handleDeleteAll}
+                    disabled={deleting}
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  >
+                    {deleting ? "Deleting..." : "Yes, delete everything"}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </CardContent>
       </Card>

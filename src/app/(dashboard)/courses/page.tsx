@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
 import {
   Plus,
   Search,
@@ -12,7 +13,17 @@ import {
   AlertCircle,
   Edit2,
   CheckCircle,
+  X,
+  Loader2,
 } from "lucide-react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 
 interface Course {
   id: string
@@ -29,12 +40,29 @@ interface Course {
   documentName?: string
 }
 
+const emptyCourse: Omit<Course, "id"> = {
+  providerName: "",
+  courseTitle: "",
+  completionDate: new Date().toISOString().split("T")[0],
+  deliveryMethod: "Self-Study",
+  fieldOfStudy: "",
+  credits: 1,
+  sponsorId: "",
+  certificateNumber: "",
+  confidence: 100,
+  needsReview: false,
+}
+
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [searchQuery, setSearchQuery] = useState("")
   const [filter, setFilter] = useState<"all" | "review" | "duplicates">("all")
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [editingCourse, setEditingCourse] = useState<Course | null>(null)
+  const [formData, setFormData] = useState(emptyCourse)
+  const [saving, setSaving] = useState(false)
 
   useEffect(() => {
     async function fetchCourses() {
@@ -101,6 +129,67 @@ export default function CoursesPage() {
     setSelectedIds(new Set())
   }
 
+  const openAddDialog = () => {
+    setEditingCourse(null)
+    setFormData(emptyCourse)
+    setDialogOpen(true)
+  }
+
+  const openEditDialog = (course: Course) => {
+    setEditingCourse(course)
+    setFormData({
+      providerName: course.providerName || "",
+      courseTitle: course.courseTitle,
+      completionDate: course.completionDate.split("T")[0],
+      deliveryMethod: course.deliveryMethod,
+      fieldOfStudy: course.fieldOfStudy || "",
+      credits: course.credits,
+      sponsorId: course.sponsorId || "",
+      certificateNumber: course.certificateNumber || "",
+      confidence: course.confidence,
+      needsReview: course.needsReview,
+    })
+    setDialogOpen(true)
+  }
+
+  const handleSaveCourse = async () => {
+    if (!formData.courseTitle) return
+    setSaving(true)
+
+    try {
+      if (editingCourse) {
+        // Update existing course
+        const res = await fetch(`/api/courses/${editingCourse.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        })
+        if (res.ok) {
+          const data = await res.json()
+          setCourses((prev) =>
+            prev.map((c) => (c.id === editingCourse.id ? { ...c, ...data.data } : c))
+          )
+        }
+      } else {
+        // Create new course
+        const res = await fetch("/api/courses", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        })
+        if (res.ok) {
+          const data = await res.json()
+          setCourses((prev) => [...prev, data.data])
+        }
+      }
+      setDialogOpen(false)
+    } catch (error) {
+      console.error("Failed to save course:", error)
+    } finally {
+      setSaving(false)
+    }
+  }
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -128,7 +217,7 @@ export default function CoursesPage() {
             {courses.length} courses • {totalCredits.toFixed(1)} total credits
           </p>
         </div>
-        <Button className="gap-2">
+        <Button className="gap-2" onClick={openAddDialog}>
           <Plus className="h-4 w-4" />
           Add Course
         </Button>
@@ -251,7 +340,7 @@ export default function CoursesPage() {
                       <CheckCircle className="h-4 w-4" />
                     </span>
                   )}
-                  <Button variant="ghost" size="icon">
+                  <Button variant="ghost" size="icon" onClick={() => openEditDialog(course)}>
                     <Edit2 className="h-4 w-4" />
                   </Button>
                 </div>
@@ -260,6 +349,106 @@ export default function CoursesPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* Add/Edit Course Dialog */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>{editingCourse ? "Edit Course" : "Add Course"}</DialogTitle>
+            <DialogDescription>
+              {editingCourse ? "Update the course details below." : "Enter the details for a new course."}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="courseTitle">Course Title *</Label>
+              <Input
+                id="courseTitle"
+                value={formData.courseTitle}
+                onChange={(e) => setFormData({ ...formData, courseTitle: e.target.value })}
+                placeholder="e.g., Ethics for CPAs"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="providerName">Provider</Label>
+                <Input
+                  id="providerName"
+                  value={formData.providerName || ""}
+                  onChange={(e) => setFormData({ ...formData, providerName: e.target.value })}
+                  placeholder="e.g., AICPA"
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="credits">Credits *</Label>
+                <Input
+                  id="credits"
+                  type="number"
+                  step="0.5"
+                  min="0"
+                  value={formData.credits}
+                  onChange={(e) => setFormData({ ...formData, credits: parseFloat(e.target.value) || 0 })}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="completionDate">Completion Date *</Label>
+                <Input
+                  id="completionDate"
+                  type="date"
+                  value={formData.completionDate}
+                  onChange={(e) => setFormData({ ...formData, completionDate: e.target.value })}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="fieldOfStudy">Field of Study</Label>
+                <Input
+                  id="fieldOfStudy"
+                  value={formData.fieldOfStudy || ""}
+                  onChange={(e) => setFormData({ ...formData, fieldOfStudy: e.target.value })}
+                  placeholder="e.g., Ethics, A&A"
+                />
+              </div>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="deliveryMethod">Delivery Method</Label>
+              <Input
+                id="deliveryMethod"
+                value={formData.deliveryMethod}
+                onChange={(e) => setFormData({ ...formData, deliveryMethod: e.target.value })}
+                placeholder="e.g., Self-Study, Webinar"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="certificateNumber">Certificate Number</Label>
+              <Input
+                id="certificateNumber"
+                value={formData.certificateNumber || ""}
+                onChange={(e) => setFormData({ ...formData, certificateNumber: e.target.value })}
+                placeholder="Optional"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSaveCourse} disabled={saving || !formData.courseTitle}>
+              {saving ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                  Saving...
+                </>
+              ) : editingCourse ? (
+                "Save Changes"
+              ) : (
+                "Add Course"
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

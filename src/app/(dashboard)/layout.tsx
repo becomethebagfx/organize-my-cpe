@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { FileText, Upload, BookOpen, BarChart3, Download, Settings } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { UserButton } from "@clerk/nextjs"
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: BarChart3 },
@@ -35,12 +36,12 @@ export default function DashboardLayout({
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm">
-              Upgrade
-            </Button>
-            <Button variant="ghost" size="sm">
-              Account
-            </Button>
+            <Link href="/settings#billing">
+              <Button variant="outline" size="sm">
+                Upgrade
+              </Button>
+            </Link>
+            <UserButton afterSignOutUrl="/" />
           </div>
         </div>
       </header>
