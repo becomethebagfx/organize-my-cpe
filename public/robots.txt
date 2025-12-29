@@ -1,0 +1,17 @@
+# Organize My CPE - robots.txt
+# https://organize-my-cpe.vercel.app
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /courses/
+Disallow: /upload/
+Disallow: /exports/
+Disallow: /settings/
+
+# Sitemap location
+Sitemap: https://organize-my-cpe.vercel.app/sitemap.xml
+
+# Crawl delay for polite bots
+Crawl-delay: 1

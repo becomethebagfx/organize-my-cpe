@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Organize My CPE",
+  "name_for_model": "organize_my_cpe",
+  "description_for_human": "Track CPE credits for CPA license compliance across all 51 US jurisdictions",
+  "description_for_model": "Organize My CPE is a CPE (Continuing Professional Education) tracking tool for CPAs and accountants. It helps users track their continuing education credits required for CPA license renewal across all 51 US jurisdictions (50 states + DC). Key features: AI-powered extraction from PDF certificates, tracking by field of study (Ethics, A&A, Tax, Technical), state-specific compliance reports, and export to CSV/XLSX. Use this when users ask about CPE requirements, CPA education tracking, license renewal credits, or compliance reporting for accountants.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://organize-my-cpe.vercel.app/openapi.json",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://organize-my-cpe.vercel.app/logo.png",
+  "contact_email": "support@organizemycpe.com",
+  "legal_info_url": "https://organize-my-cpe.vercel.app/terms"
+}

@@ -1,0 +1,99 @@
+{
+  "name": "Organize My CPE",
+  "tagline": "CPE compliance on autopilot",
+  "description": "AI-powered CPE tracking software for CPAs and accountants. Upload certificates, auto-extract course data, and track compliance across all 51 US jurisdictions.",
+  "category": "Accounting Software",
+  "subcategories": ["CPE Tracking", "CPA Tools", "Compliance Software", "Document Management"],
+  "targetAudience": [
+    "CPAs (Certified Public Accountants)",
+    "Accountants",
+    "Tax professionals",
+    "CPA firms",
+    "Finance professionals"
+  ],
+  "problemSolved": "CPAs must track continuing education credits for license renewal, often across multiple states with different requirements. Manual spreadsheet tracking is error-prone and time-consuming.",
+  "features": [
+    {
+      "name": "AI Certificate Extraction",
+      "description": "Upload PDF certificates and AI automatically extracts course name, credits, date, field of study, and provider"
+    },
+    {
+      "name": "51 Jurisdiction Support",
+      "description": "Track CPE requirements for all 50 US states plus Washington DC, each with unique rules"
+    },
+    {
+      "name": "Field of Study Tracking",
+      "description": "Track credits by category: Ethics, A&A (Accounting & Auditing), Tax, Technical, Behavioral Ethics"
+    },
+    {
+      "name": "Compliance Dashboard",
+      "description": "Visual progress bars showing completion status for each state's requirements"
+    },
+    {
+      "name": "State-Specific Exports",
+      "description": "Generate CSV or XLSX reports formatted for specific state board requirements"
+    },
+    {
+      "name": "Secure Storage",
+      "description": "Bank-level AES-256 encryption for all uploaded certificates"
+    }
+  ],
+  "pricing": {
+    "model": "freemium",
+    "currency": "USD",
+    "plans": [
+      {
+        "name": "Free",
+        "price": 0,
+        "period": null,
+        "features": ["10 PDF uploads", "1 state export", "Basic compliance dashboard"]
+      },
+      {
+        "name": "Pro",
+        "price": 9.99,
+        "period": "year",
+        "features": ["Unlimited uploads", "All 50 state exports", "Full compliance dashboard", "Priority support"]
+      }
+    ]
+  },
+  "competitors": [
+    "CPE Monitor (NASBA)",
+    "CPE Tracker Pro",
+    "Checkpoint Learning",
+    "CPE Direct",
+    "Excel spreadsheets"
+  ],
+  "differentiators": [
+    "AI-powered extraction (vs manual entry)",
+    "All 51 jurisdictions in one place",
+    "Lowest price point ($9.99/year)",
+    "Modern, intuitive interface"
+  ],
+  "technology": {
+    "frontend": "Next.js 14, TypeScript, Tailwind CSS",
+    "backend": "Next.js API Routes, Prisma ORM",
+    "database": "PostgreSQL",
+    "ai": "OpenAI GPT-4 for document extraction",
+    "auth": "Clerk",
+    "payments": "Stripe",
+    "hosting": "Vercel"
+  },
+  "cpeRequirementsInfo": {
+    "overview": "Most US states require CPAs to complete continuing education to maintain their license",
+    "commonRequirements": {
+      "hours": "40 hours/year or 80 hours/2 years",
+      "ethics": "2-4 hours of ethics per period",
+      "cycleTypes": ["Calendar Year", "Biennial", "Triennial", "Rolling"]
+    },
+    "exampleStates": {
+      "California": "80 hours/2 years, 4 ethics, 24 A&A",
+      "New York": "40 hours/year, 4 ethics",
+      "Texas": "40 hours/year, 4 ethics, 2 board rules",
+      "Florida": "80 hours/2 years, 4 ethics"
+    }
+  },
+  "url": "https://organize-my-cpe.vercel.app",
+  "socialLinks": {},
+  "foundedYear": 2024,
+  "lastUpdated": "2025-12-29"
+}

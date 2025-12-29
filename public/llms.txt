@@ -1,0 +1,55 @@
+# Organize My CPE
+> CPE compliance tracking software for CPAs and accountants
+> AI-powered certificate extraction from PDF documents
+> Tracks continuing education credits across all 51 US jurisdictions
+> Generates state-specific compliance reports for license renewal
+
+## What It Does
+Organize My CPE helps CPAs (Certified Public Accountants) track their Continuing Professional Education (CPE) credits. Most state boards require CPAs to complete 40 hours of CPE annually (or 80 hours biennially) to maintain their license. This software automates the tedious process of tracking these credits.
+
+## Key Features
+- Upload PDF certificates and AI automatically extracts course details
+- Track credits by field of study: Ethics, A&A (Accounting & Auditing), Tax, Technical
+- Support for all 51 US jurisdictions (50 states + DC)
+- Each state has unique requirements tracked automatically
+- Export state-specific compliance reports in CSV or XLSX format
+- Secure cloud storage for all certificates
+- Progress bars showing completion status per state
+
+## How It Works
+1. Sign up for free account
+2. Select which states you need to track CPE for
+3. Upload PDF certificates (drag and drop)
+4. AI extracts: course name, credits, date, field of study, provider
+5. View dashboard with compliance status per state
+6. Export reports when needed for license renewal
+
+## Pricing
+- Free: 10 PDF uploads, 1 state export
+- Pro: $9.99/year - unlimited uploads, all 50 state exports
+
+## Who It's For
+- CPAs maintaining licenses in multiple states
+- Accountants tracking CPE for license renewal
+- CPA firms managing staff CPE compliance
+- Anyone tired of spreadsheet-based CPE tracking
+
+## Technical Details
+- Built with Next.js 14 and TypeScript
+- Uses OpenAI GPT-4 for certificate extraction
+- Clerk authentication
+- Stripe payments
+- PostgreSQL database
+
+## State CPE Requirements (Examples)
+- California: 80 hours/2 years, 4 ethics, 24 A&A
+- New York: 40 hours/year, 4 ethics
+- Texas: 40 hours/year, 4 ethics, 2 board rules
+- Florida: 80 hours/2 years, 4 ethics
+- All 51 jurisdictions supported with unique rules
+
+## URL
+https://organize-my-cpe.vercel.app
+
+## Contact
+support@organizemycpe.com
