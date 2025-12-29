@@ -43,7 +43,7 @@ const emptyCourse: Omit<Course, "id"> = {
   providerName: "",
   courseTitle: "",
   completionDate: new Date().toISOString().split("T")[0],
-  deliveryMethod: "Self-Study",
+  deliveryMethod: "SELF_STUDY",
   fieldOfStudy: "",
   credits: 1,
   sponsorId: "",
@@ -159,14 +159,14 @@ export default function CoursesPage() {
       if (editingCourse) {
         // Update existing course
         const res = await fetch(`/api/courses/${editingCourse.id}`, {
-          method: "PUT",
+          method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         })
         if (res.ok) {
           const data = await res.json()
           setCourses((prev) =>
-            prev.map((c) => (c.id === editingCourse.id ? { ...c, ...data.data } : c))
+            prev.map((c) => (c.id === editingCourse.id ? { ...c, ...data.data.course } : c))
           )
         }
       } else {
@@ -178,7 +178,7 @@ export default function CoursesPage() {
         })
         if (res.ok) {
           const data = await res.json()
-          setCourses((prev) => [...prev, data.data])
+          setCourses((prev) => [...prev, data.data.course])
         }
       }
       setDialogOpen(false)
