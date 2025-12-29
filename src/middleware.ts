@@ -80,13 +80,20 @@ const clerkMiddlewareHandler = clerkMiddleware(async (auth, req) => {
   }
 })
 
-export default function middleware(req: NextRequest) {
+export default async function middleware(req: NextRequest) {
   // Use dev middleware if Clerk is not configured
   if (!isClerkConfigured()) {
     console.warn('[Middleware] Clerk not configured - running in dev mode')
     return devMiddleware(req)
   }
-  return clerkMiddlewareHandler(req, {} as never)
+  try {
+    return await clerkMiddlewareHandler(req, {} as never)
+  } catch (error) {
+    // Allow the request to continue if middleware fails
+    // This prevents 500 errors on 404 pages
+    console.error('[Middleware] Error:', error)
+    return NextResponse.next()
+  }
 }
 
 export const config = {
