@@ -72,7 +72,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] font-sans text-slate-900 selection:bg-gray-900 selection:text-white">
+    <div className="min-h-screen bg-[#FAFAFA] font-sans text-slate-900 selection:bg-gray-900 selection:text-white overflow-x-hidden">
 
       {/* Navbar - Sticky & blurred like Dub */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -231,10 +231,10 @@ export default function LandingPage() {
       </section>
 
       {/* Social Proof Marquee */}
-      <section className="border-y border-gray-200 bg-white py-12">
+      <section className="border-y border-gray-200 bg-white py-12 overflow-hidden">
         <p className="text-center text-sm font-medium text-gray-500 mb-8">Trusted by forward-thinking CPAs</p>
-        <div className="relative flex overflow-hidden group">
-          <div className="animate-marquee flex gap-16 whitespace-nowrap min-w-full justify-center opacity-40 grayscale">
+        <div className="relative flex overflow-hidden group max-w-full">
+          <div className="animate-marquee flex gap-8 sm:gap-16 whitespace-nowrap justify-center opacity-40 grayscale px-4">
             <span className="text-xl font-bold font-serif">Deloitte.</span>
             <span className="text-xl font-bold font-sans">KPMG</span>
             <span className="text-xl font-bold font-mono">PWC</span>
