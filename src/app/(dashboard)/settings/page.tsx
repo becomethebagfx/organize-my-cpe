@@ -99,8 +99,8 @@ export default function SettingsPage() {
         headers: { "Content-Type": "application/json" },
       })
       const data = await response.json()
-      if (data.url) {
-        window.location.href = data.url
+      if (data.success && data.data?.url) {
+        window.location.href = data.data.url
       }
     } catch (error) {
       console.error("Failed to start checkout:", error)
@@ -110,7 +110,9 @@ export default function SettingsPage() {
   const handleExport = async () => {
     setExporting(true)
     try {
-      const response = await fetch("/api/exports/all")
+      const response = await fetch("/api/exports/canonical_csv", {
+        method: "POST",
+      })
       if (response.ok) {
         const blob = await response.blob()
         const url = window.URL.createObjectURL(blob)

@@ -1,0 +1,97 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Organize My CPE" [ref=e5] [cursor=pointer]:
+        - /url: /dashboard
+        - img [ref=e6]
+        - generic [ref=e9]: Organize My CPE
+      - navigation [ref=e10]:
+        - link "Dashboard" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - button "Dashboard" [ref=e12]:
+            - img
+            - text: Dashboard
+        - link "Upload" [ref=e13] [cursor=pointer]:
+          - /url: /upload
+          - button "Upload" [ref=e14]:
+            - img
+            - text: Upload
+        - link "Courses" [ref=e15] [cursor=pointer]:
+          - /url: /courses
+          - button "Courses" [ref=e16]:
+            - img
+            - text: Courses
+        - link "Exports" [ref=e17] [cursor=pointer]:
+          - /url: /exports
+          - button "Exports" [ref=e18]:
+            - img
+            - text: Exports
+        - link "Settings" [ref=e19] [cursor=pointer]:
+          - /url: /settings
+          - button "Settings" [ref=e20]:
+            - img
+            - text: Settings
+      - link "Upgrade" [ref=e22] [cursor=pointer]:
+        - /url: /settings#billing
+        - button "Upgrade" [ref=e23]
+  - main [ref=e24]:
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - heading "Exports" [level=1] [ref=e27]
+        - paragraph [ref=e28]: Download your CPE data in various formats
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: General Exports
+          - generic [ref=e32]: Download your data in standard formats
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - img [ref=e37]
+            - generic [ref=e40]:
+              - paragraph [ref=e41]: All Courses (CSV)
+              - paragraph [ref=e42]: Export all your courses in our standard format
+              - button "Download" [ref=e43] [cursor=pointer]:
+                - img
+                - text: Download
+          - generic [ref=e44]:
+            - img [ref=e46]
+            - generic [ref=e49]:
+              - paragraph [ref=e50]: All Courses (Excel)
+              - paragraph [ref=e51]: Export all your courses as an Excel file
+              - button "Download" [ref=e52] [cursor=pointer]:
+                - img
+                - text: Download
+          - generic [ref=e53]:
+            - img [ref=e55]
+            - generic [ref=e58]:
+              - paragraph [ref=e59]: Certificate Bundle
+              - paragraph [ref=e60]: Download all uploaded certificates in a ZIP file
+              - button "Download" [ref=e61] [cursor=pointer]:
+                - img
+                - text: Download
+          - generic [ref=e62]:
+            - img [ref=e64]
+            - generic [ref=e67]:
+              - paragraph [ref=e68]: Summary Report
+              - paragraph [ref=e69]: Generate a printable compliance summary
+              - button "Download" [ref=e70] [cursor=pointer]:
+                - img
+                - text: Download
+      - generic [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e73]: State-Specific Exports
+          - generic [ref=e74]: Download reports formatted for specific state boards
+        - generic [ref=e76]:
+          - img [ref=e77]
+          - paragraph [ref=e80]: Select states in Settings
+          - paragraph [ref=e81]: Configure your licensed states to see state-specific export options
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]: Export History
+          - generic [ref=e85]: Previously generated exports
+        - generic [ref=e87]:
+          - img [ref=e88]
+          - paragraph [ref=e91]: No exports yet
+```
