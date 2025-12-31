@@ -198,6 +198,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <head>
+          {/* Google Search Console verification */}
+          <meta
+            name="google-site-verification"
+            content="mKFM0bcd-kwczUIFmow6PRcEgKHsLtOUrOyPw1ViOZ0"
+          />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
