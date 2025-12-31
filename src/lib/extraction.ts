@@ -5,9 +5,16 @@ import * as XLSX from 'xlsx'
 import { extractedCourseSchema, type ExtractedCourse } from '@/types'
 import crypto from 'crypto'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+// Lazy-load OpenAI client to avoid build-time errors
+let openaiClient: OpenAI | null = null
+function getOpenAI(): OpenAI {
+  if (!openaiClient) {
+    openaiClient = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+  return openaiClient
+}
 
 // Extract text from PDF buffer
 export async function extractPdfText(buffer: Buffer): Promise<string> {
@@ -99,7 +106,7 @@ ${text.slice(0, 4000)}
 Return ONLY valid JSON, no explanation.`
 
   try {
-    const response = await openai.chat.completions.create({
+    const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.1,
