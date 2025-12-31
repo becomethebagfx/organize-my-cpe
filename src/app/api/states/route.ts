@@ -1,6 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
 import { db } from '@/lib/db'
 import { getOrCreateUserProfile } from '@/lib/auth'
+
+// Valid US state codes (50 states + DC)
+const VALID_STATE_CODES = [
+  'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL',
+  'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME',
+  'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH',
+  'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI',
+  'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY',
+] as const
+
+// Schema for state selection input validation
+const statesInputSchema = z.object({
+  states: z.array(
+    z.string()
+      .length(2, 'State code must be exactly 2 characters')
+      .toUpperCase()
+      .refine(
+        (code) => VALID_STATE_CODES.includes(code as typeof VALID_STATE_CODES[number]),
+        { message: 'Invalid state code' }
+      )
+  ).max(51, 'Cannot select more than 51 states'),
+})
 
 export async function GET() {
   try {
@@ -36,14 +59,23 @@ export async function PUT(request: NextRequest) {
   try {
     const userProfile = await getOrCreateUserProfile()
 
-    const { states } = await request.json()
+    const body = await request.json()
 
-    if (!Array.isArray(states)) {
+    // Validate input with Zod schema
+    const parseResult = statesInputSchema.safeParse(body)
+    if (!parseResult.success) {
+      const errors = parseResult.error.flatten()
       return NextResponse.json(
-        { success: false, error: 'Invalid states format' },
+        {
+          success: false,
+          error: 'Invalid input',
+          details: errors.fieldErrors.states || errors.formErrors,
+        },
         { status: 400 }
       )
     }
+
+    const { states } = parseResult.data
 
     const updatedUser = await db.userProfile.update({
       where: { id: userProfile.id },
