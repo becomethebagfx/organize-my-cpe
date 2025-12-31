@@ -22,7 +22,7 @@ export default defineConfig({
     },
   ],
 
-  webServer: {
+  webServer: process.env.BASE_URL ? undefined : {
     command: "npm run dev",
     url: "http://localhost:3005",
     reuseExistingServer: true,

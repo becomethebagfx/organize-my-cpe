@@ -84,17 +84,27 @@ const clerkMiddlewareHandler = clerkMiddleware(async (auth, req) => {
 
 export default async function middleware(req: NextRequest) {
   // Use dev middleware if Clerk is not configured
+  // WARNING: Only allow in development mode - never in production!
   if (!isClerkConfigured()) {
+    if (process.env.NODE_ENV === 'production') {
+      console.error('[Middleware] CRITICAL: Clerk is not configured in production!')
+      return new NextResponse('Service Unavailable - Authentication not configured', { status: 503 })
+    }
     console.warn('[Middleware] Clerk not configured - running in dev mode')
     return devMiddleware(req)
   }
   try {
     return await clerkMiddlewareHandler(req, {} as never)
   } catch (error) {
-    // Allow the request to continue if middleware fails
-    // This prevents 500 errors on 404 pages
     console.error('[Middleware] Error:', error)
-    return NextResponse.next()
+    // For public routes, allow through even on error
+    if (isPublicRoute(req)) {
+      return NextResponse.next()
+    }
+    // For protected routes, redirect to sign-in on auth errors
+    const signInUrl = new URL('/sign-in', req.url)
+    signInUrl.searchParams.set('redirect_url', req.url)
+    return NextResponse.redirect(signInUrl)
   }
 }
 
