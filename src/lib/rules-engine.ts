@@ -122,19 +122,25 @@ export function calculateCycleDates(rule: StateRule, referenceDate: Date = new D
 
 /**
  * Calculate compliance for a single state
+ * @param stateCode - The state code to calculate compliance for
+ * @param courses - User's course records
+ * @param referenceDate - Reference date for cycle calculation
+ * @param rule - Optional pre-loaded state rule (avoids N+1 queries)
  */
 export async function calculateStateCompliance(
   stateCode: string,
   courses: CourseRecord[],
-  referenceDate: Date = new Date()
+  referenceDate: Date = new Date(),
+  rule?: StateRule | null
 ): Promise<ComplianceState | null> {
-  const rule = await db.stateRule.findUnique({
+  // Use provided rule or fetch it (supports both optimized batch and individual calls)
+  const stateRule = rule ?? await db.stateRule.findUnique({
     where: { stateCode },
   })
 
-  if (!rule) return null
+  if (!stateRule) return null
 
-  const { start, end } = calculateCycleDates(rule, referenceDate)
+  const { start, end } = calculateCycleDates(stateRule, referenceDate)
 
   // Filter courses within the cycle period
   const cycleCourses = courses.filter(course => {
@@ -178,23 +184,23 @@ export async function calculateStateCompliance(
   // Determine missing requirements
   const missingRequirements: string[] = []
 
-  if (totalCompleted < rule.totalHoursRequired) {
-    const remaining = rule.totalHoursRequired - totalCompleted
+  if (totalCompleted < stateRule.totalHoursRequired) {
+    const remaining = stateRule.totalHoursRequired - totalCompleted
     missingRequirements.push(`Need ${remaining.toFixed(1)} more hours`)
   }
 
-  if (ethicsCompleted < rule.ethicsHoursRequired) {
-    const remaining = rule.ethicsHoursRequired - ethicsCompleted
+  if (ethicsCompleted < stateRule.ethicsHoursRequired) {
+    const remaining = stateRule.ethicsHoursRequired - ethicsCompleted
     missingRequirements.push(`Need ${remaining.toFixed(1)} more ethics hours`)
   }
 
-  if (liveCompleted < rule.minLiveHours) {
-    const remaining = rule.minLiveHours - liveCompleted
+  if (liveCompleted < stateRule.minLiveHours) {
+    const remaining = stateRule.minLiveHours - liveCompleted
     missingRequirements.push(`Need ${remaining.toFixed(1)} more live/interactive hours`)
   }
 
   // Check subject minimums from JSON
-  const subjectMinimums = rule.subjectMinimums as Record<string, number> | null
+  const subjectMinimums = stateRule.subjectMinimums as Record<string, number> | null
   if (subjectMinimums) {
     if (subjectMinimums.accounting_auditing && accountingAuditingCompleted < subjectMinimums.accounting_auditing) {
       const remaining = subjectMinimums.accounting_auditing - accountingAuditingCompleted
@@ -214,11 +220,11 @@ export async function calculateStateCompliance(
 
   // Build subject breakdown
   const subjectBreakdown: Record<string, { required: number; completed: number }> = {
-    ethics: { required: rule.ethicsHoursRequired, completed: ethicsCompleted },
+    ethics: { required: stateRule.ethicsHoursRequired, completed: ethicsCompleted },
   }
 
-  if (rule.minLiveHours > 0) {
-    subjectBreakdown.live = { required: rule.minLiveHours, completed: liveCompleted }
+  if (stateRule.minLiveHours > 0) {
+    subjectBreakdown.live = { required: stateRule.minLiveHours, completed: liveCompleted }
   }
 
   if (subjectMinimums) {
@@ -243,13 +249,13 @@ export async function calculateStateCompliance(
   }
 
   return {
-    stateCode: rule.stateCode,
-    stateName: rule.stateName,
-    totalRequired: rule.totalHoursRequired,
+    stateCode: stateRule.stateCode,
+    stateName: stateRule.stateName,
+    totalRequired: stateRule.totalHoursRequired,
     totalCompleted,
-    ethicsRequired: rule.ethicsHoursRequired,
+    ethicsRequired: stateRule.ethicsHoursRequired,
     ethicsCompleted,
-    liveRequired: rule.minLiveHours,
+    liveRequired: stateRule.minLiveHours,
     liveCompleted,
     subjectBreakdown,
     isCompliant,
@@ -261,12 +267,13 @@ export async function calculateStateCompliance(
 
 /**
  * Calculate compliance for all selected states
+ * Optimized to batch-load state rules to avoid N+1 queries
  */
 export async function calculateUserCompliance(
   userId: string,
   selectedStates: string[]
 ): Promise<ComplianceState[]> {
-  // Get all user's courses
+  // Get all user's courses in one query
   const courses = await db.courseRecord.findMany({
     where: {
       userId,
@@ -274,10 +281,21 @@ export async function calculateUserCompliance(
     },
   })
 
+  // Batch-load all state rules in one query (avoids N+1)
+  const stateRules = await db.stateRule.findMany({
+    where: {
+      stateCode: { in: selectedStates },
+    },
+  })
+
+  // Create a map for O(1) lookup
+  const rulesMap = new Map(stateRules.map(rule => [rule.stateCode, rule]))
+
   const results: ComplianceState[] = []
 
   for (const stateCode of selectedStates) {
-    const compliance = await calculateStateCompliance(stateCode, courses)
+    const rule = rulesMap.get(stateCode)
+    const compliance = await calculateStateCompliance(stateCode, courses, new Date(), rule)
     if (compliance) {
       results.push(compliance)
     }
