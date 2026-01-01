@@ -1,5 +1,5 @@
-# Organize My CPE - robots.txt
-# https://organize-my-cpe.vercel.app
+# Organize My CPE - CPE Tracking for CPAs
+# https://organizemycpe.com
 
 User-agent: *
 Allow: /
@@ -10,8 +10,30 @@ Disallow: /upload/
 Disallow: /exports/
 Disallow: /settings/
 
+# AI/LLM Crawlers - Explicitly allowed for AEO
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
 # Sitemap location
-Sitemap: https://organize-my-cpe.vercel.app/sitemap.xml
+Sitemap: https://organizemycpe.com/sitemap.xml
 
 # Crawl delay for polite bots
 Crawl-delay: 1
