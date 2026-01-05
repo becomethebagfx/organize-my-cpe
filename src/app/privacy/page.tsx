@@ -20,9 +20,9 @@ export default function PrivacyPage() {
             <span>OrganizeMyCPE</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">FAQ</Link>
-            <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
-            <Link href="/sign-in" className="btn-brand">Sign In</Link>
+            <Link href="/faq" className="hidden sm:inline-block text-sm text-muted-foreground hover:text-foreground transition-colors">FAQ</Link>
+            <Link href="/pricing" className="hidden sm:inline-block text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
+            <Link href="/sign-in" className="btn-brand text-sm">Sign In</Link>
           </div>
         </div>
       </header>

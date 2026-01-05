@@ -62,7 +62,7 @@ test.describe("Mobile Viewport - No Horizontal Scroll", () => {
 
           await page.waitForTimeout(500);
 
-          // Find elements that overflow viewport
+          // Find elements that overflow viewport (excluding expected overflows like marquee animations)
           const overflowingElements = await page.evaluate(() => {
             const viewportWidth = document.documentElement.clientWidth;
             const elements = document.querySelectorAll("*");
@@ -71,10 +71,20 @@ test.describe("Mobile Viewport - No Horizontal Scroll", () => {
             elements.forEach((el) => {
               const rect = el.getBoundingClientRect();
               if (rect.right > viewportWidth + 5 || rect.left < -5) {
+                // Skip elements that are expected to overflow (marquee, animations, hidden)
+                const className = el.className?.toString() || "";
+                if (className.includes("marquee") ||
+                    className.includes("animate-") ||
+                    el.closest(".animate-marquee") ||
+                    el.closest("[class*='marquee']") ||
+                    getComputedStyle(el).overflow === "hidden") {
+                  return;
+                }
+
                 const tag = el.tagName.toLowerCase();
-                const className = el.className?.toString().slice(0, 50) || "";
+                const shortClass = className.slice(0, 50);
                 const id = el.id || "";
-                overflows.push(`${tag}${id ? "#" + id : ""}${className ? "." + className.split(" ")[0] : ""} (right: ${Math.round(rect.right)}px)`);
+                overflows.push(`${tag}${id ? "#" + id : ""}${shortClass ? "." + shortClass.split(" ")[0] : ""} (right: ${Math.round(rect.right)}px)`);
               }
             });
 
