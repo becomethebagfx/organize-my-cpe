@@ -1,0 +1,224 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link "OrganizeMyCPE" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e8]: OrganizeMyCPE
+        - generic [ref=e9]:
+          - link:
+            - /url: /sign-in
+          - link "Sign up" [ref=e10] [cursor=pointer]:
+            - /url: /sign-up
+            - button "Sign up" [ref=e11]
+    - generic [ref=e14]:
+      - generic [ref=e16]:
+        - text: AI-Powered Certificate Extraction
+        - img [ref=e18]
+      - heading "CPE compliance on autopilot." [level=1] [ref=e20]
+      - paragraph [ref=e21]: Stop wrestling with spreadsheets. Upload your certificates, we'll extract the data, track your compliance, and generate audit-ready reports.
+      - generic [ref=e22]:
+        - link "Start for free" [ref=e23] [cursor=pointer]:
+          - /url: /sign-up
+          - button "Start for free" [ref=e24]
+        - link "See how it works" [ref=e25] [cursor=pointer]:
+          - /url: "#features"
+          - button "See how it works" [ref=e26]:
+            - text: See how it works
+            - img [ref=e27]
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e36]: OrganizeMyCPE
+          - generic [ref=e38]: John Smith, CPA
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]: Credits Earned
+              - generic [ref=e45]: 32 / 40
+            - generic [ref=e48]:
+              - generic [ref=e49]: Ethics Credits
+              - generic [ref=e50]: 4 / 4
+            - generic [ref=e53]:
+              - generic [ref=e54]: States Tracked
+              - generic [ref=e55]: NY, CA
+              - generic [ref=e56]: All compliant
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - generic [ref=e59]: Recent Courses
+              - button "View all" [ref=e60] [cursor=pointer]
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - generic [ref=e63]:
+                  - generic [ref=e64]: "4.0"
+                  - generic [ref=e65]:
+                    - generic [ref=e66]: Ethics in Professional Practice
+                    - generic [ref=e67]: Ethics
+                - generic [ref=e68]: Dec 15
+              - generic [ref=e69]:
+                - generic [ref=e70]:
+                  - generic [ref=e71]: "8.0"
+                  - generic [ref=e72]:
+                    - generic [ref=e73]: Advanced Tax Planning Strategies
+                    - generic [ref=e74]: Tax
+                - generic [ref=e75]: Dec 10
+              - generic [ref=e76]:
+                - generic [ref=e77]:
+                  - generic [ref=e78]: "4.0"
+                  - generic [ref=e79]:
+                    - generic [ref=e80]: GAAP Update 2024
+                    - generic [ref=e81]: A&A
+                - generic [ref=e82]: Nov 28
+    - generic [ref=e84]:
+      - paragraph [ref=e85]: Trusted by forward-thinking CPAs
+      - generic [ref=e87]:
+        - generic [ref=e88]: Deloitte.
+        - generic [ref=e89]: KPMG
+        - generic [ref=e90]: PWC
+        - generic [ref=e91]: EY
+        - generic [ref=e92]: Grant Thornton
+        - generic [ref=e93]: BDO
+        - generic [ref=e94]: Deloitte.
+        - generic [ref=e95]: KPMG
+        - generic [ref=e96]: PWC
+        - generic [ref=e97]: EY
+    - generic [ref=e98]:
+      - generic [ref=e99]:
+        - heading "Everything you need to stay compliant." [level=2] [ref=e100]
+        - paragraph [ref=e101]: Powerful features wrapped in a simple interface. We handle the complexity of state boards so you don't have to.
+      - generic [ref=e102]:
+        - generic [ref=e103]:
+          - img [ref=e105]
+          - heading "AI Extraction" [level=3] [ref=e107]
+          - paragraph [ref=e108]: Drag and drop your PDF certificates. Our AI instantly captures the course name, date, credit amount, and field of study.
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - generic [ref=e111]: PDF
+              - generic [ref=e112]:
+                - generic [ref=e113]: Ethics_Certificate_2024.pdf
+                - generic [ref=e114]: Uploaded just now
+              - img
+              - generic [ref=e116]: Extracted
+            - generic [ref=e117]:
+              - generic [ref=e118]:
+                - generic [ref=e119]: Course
+                - generic [ref=e120]: Ethics 101
+              - generic [ref=e121]:
+                - generic [ref=e122]: Credits
+                - generic [ref=e123]: "2.0"
+              - generic [ref=e124]:
+                - generic [ref=e125]: Field
+                - generic [ref=e126]: Behavioral Ethics
+              - generic [ref=e127]:
+                - generic [ref=e128]: Date
+                - generic [ref=e129]: Dec 15, 2024
+        - generic [ref=e130]:
+          - img [ref=e132]
+          - heading "All 50 States + DC" [level=3] [ref=e135]
+          - paragraph [ref=e136]: We track unique CPE rules for every state board, including Ethics, A&A, and technical requirements.
+          - generic [ref=e137]:
+            - generic [ref=e138]: AL
+            - generic [ref=e139]: AK
+            - generic [ref=e140]: AZ
+            - generic [ref=e141]: AR
+            - generic [ref=e142]: CA
+            - generic [ref=e143]: CO
+            - generic [ref=e144]: CT
+            - generic [ref=e145]: DE
+            - generic [ref=e146]: DC
+            - generic [ref=e147]: FL
+            - generic [ref=e148]: GA
+            - generic [ref=e149]: HI
+            - generic [ref=e150]: ID
+            - generic [ref=e151]: IL
+            - generic [ref=e152]: IN
+            - generic [ref=e153]: IA
+            - generic [ref=e154]: KS
+            - generic [ref=e155]: KY
+            - generic [ref=e156]: LA
+            - generic [ref=e157]: ME
+            - generic [ref=e158]: MD
+            - generic [ref=e159]: MA
+            - generic [ref=e160]: MI
+            - generic [ref=e161]: MN
+            - generic [ref=e162]: MS
+            - generic [ref=e163]: MO
+            - generic [ref=e164]: MT
+            - generic [ref=e165]: NE
+            - generic [ref=e166]: NV
+            - generic [ref=e167]: NH
+            - generic [ref=e168]: NJ
+            - generic [ref=e169]: NM
+            - generic [ref=e170]: NY
+            - generic [ref=e171]: NC
+            - generic [ref=e172]: ND
+            - generic [ref=e173]: OH
+            - generic [ref=e174]: OK
+            - generic [ref=e175]: OR
+            - generic [ref=e176]: PA
+            - generic [ref=e177]: RI
+            - generic [ref=e178]: SC
+            - generic [ref=e179]: SD
+            - generic [ref=e180]: TN
+            - generic [ref=e181]: TX
+            - generic [ref=e182]: UT
+            - generic [ref=e183]: VT
+            - generic [ref=e184]: VA
+            - generic [ref=e185]: WA
+            - generic [ref=e186]: WV
+            - generic [ref=e187]: WI
+            - generic [ref=e188]: WY
+          - paragraph [ref=e189]: "Highlighted: Most common jurisdictions"
+        - generic [ref=e190]:
+          - img [ref=e192]
+          - heading "Audit Ready" [level=3] [ref=e195]
+          - paragraph [ref=e196]: One-click export of all your certificates and a summary report.
+        - generic [ref=e197]:
+          - img [ref=e199]
+          - heading "Secure Storage" [level=3] [ref=e202]
+          - paragraph [ref=e203]: Bank-level AES-256 encryption for all your documents.
+    - generic [ref=e205]:
+      - generic [ref=e206]:
+        - heading "Simple, transparent pricing" [level=2] [ref=e207]
+        - paragraph [ref=e208]: Less than a single CPE course.
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - heading "Free" [level=3] [ref=e211]
+          - paragraph [ref=e212]: Try it out
+          - generic [ref=e213]: $0
+          - list [ref=e214]:
+            - listitem [ref=e215]: Up to 10 document uploads
+            - listitem [ref=e217]: 1 state export
+            - listitem [ref=e219]: Basic compliance dashboard
+          - link "Get started" [ref=e221] [cursor=pointer]:
+            - /url: /sign-up
+            - button "Get started" [ref=e222]
+        - generic [ref=e223]:
+          - generic [ref=e224]: Most popular
+          - heading "Pro" [level=3] [ref=e225]
+          - paragraph [ref=e226]: Full access
+          - generic [ref=e227]: $9.99/year
+          - list [ref=e228]:
+            - listitem [ref=e229]: Unlimited document uploads
+            - listitem [ref=e231]: All 50 state exports
+            - listitem [ref=e233]: Full compliance dashboard
+            - listitem [ref=e235]: Priority support
+          - link "Get Pro" [ref=e237] [cursor=pointer]:
+            - /url: /sign-up
+            - button "Get Pro" [ref=e238]
+    - contentinfo [ref=e239]:
+      - generic [ref=e240]:
+        - generic [ref=e241]:
+          - text: OrganizeMyCPE
+          - paragraph [ref=e242]: © 2025 Organize My CPE. All rights reserved.
+        - generic [ref=e243]:
+          - link "Privacy" [ref=e244] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=e245] [cursor=pointer]:
+            - /url: /terms
+          - link "Contact" [ref=e246] [cursor=pointer]:
+            - /url: /contact
+  - alert [ref=e247]
+```

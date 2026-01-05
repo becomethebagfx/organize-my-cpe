@@ -267,15 +267,15 @@ export default function LandingPage() {
              <p className="mt-2 text-sm text-gray-500 max-w-md">Drag and drop your PDF certificates. Our AI instantly captures the course name, date, credit amount, and field of study.</p>
 
              {/* Demo UI - fixed positioning */}
-             <div className="mt-6 bg-white border border-gray-200 rounded-xl shadow-sm p-5">
-               <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
-                 <div className="h-12 w-12 bg-red-50 rounded-lg text-red-600 flex items-center justify-center text-sm font-bold border border-red-100">PDF</div>
-                 <div className="flex-1">
-                   <div className="text-sm font-medium text-gray-900">Ethics_Certificate_2024.pdf</div>
+             <div className="mt-6 bg-white border border-gray-200 rounded-xl shadow-sm p-4 sm:p-5">
+               <div className="flex items-center gap-3 sm:gap-4 pb-4 border-b border-gray-100">
+                 <div className="h-10 w-10 sm:h-12 sm:w-12 bg-red-50 rounded-lg text-red-600 flex items-center justify-center text-xs sm:text-sm font-bold border border-red-100 shrink-0">PDF</div>
+                 <div className="flex-1 min-w-0">
+                   <div className="text-xs sm:text-sm font-medium text-gray-900 truncate">Ethics_Certificate_2024.pdf</div>
                    <div className="text-xs text-gray-400">Uploaded just now</div>
                  </div>
-                 <ArrowRight className="text-gray-300 h-5 w-5 mx-2" />
-                 <div className="h-7 px-3 bg-green-50 text-green-700 text-xs font-medium flex items-center justify-center rounded-full border border-green-100">Extracted</div>
+                 <ArrowRight className="text-gray-300 h-4 w-4 sm:h-5 sm:w-5 hidden sm:block shrink-0" />
+                 <div className="h-6 sm:h-7 px-2 sm:px-3 bg-green-50 text-green-700 text-xs font-medium flex items-center justify-center rounded-full border border-green-100 shrink-0">Extracted</div>
                </div>
                <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
                  <div>
