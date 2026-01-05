@@ -7,8 +7,8 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Settings Page - Upgrade Flow", () => {
   test("upgrade button exists and has proper styling", async ({ page }) => {
-    await page.goto("/settings");
-    await page.waitForTimeout(1000);
+    await page.goto("/settings", { waitUntil: "networkidle" });
+    await page.waitForTimeout(2000);
 
     // Check for upgrade button - may redirect to sign-in
     const currentUrl = page.url();
@@ -24,8 +24,8 @@ test.describe("Settings Page - Upgrade Flow", () => {
   });
 
   test("upgrade button shows loading state when clicked", async ({ page }) => {
-    await page.goto("/settings");
-    await page.waitForTimeout(1000);
+    await page.goto("/settings", { waitUntil: "networkidle" });
+    await page.waitForTimeout(2000);
 
     const currentUrl = page.url();
     if (currentUrl.includes("sign-in")) {
@@ -53,8 +53,8 @@ test.describe("Settings Page - Upgrade Flow", () => {
 
 test.describe("Exports Page - Error Handling", () => {
   test("exports page loads", async ({ page }) => {
-    await page.goto("/exports");
-    await page.waitForTimeout(1000);
+    await page.goto("/exports", { waitUntil: "networkidle" });
+    await page.waitForTimeout(2000);
 
     const currentUrl = page.url();
     if (currentUrl.includes("sign-in")) {
@@ -68,8 +68,8 @@ test.describe("Exports Page - Error Handling", () => {
   });
 
   test("export buttons exist for all types", async ({ page }) => {
-    await page.goto("/exports");
-    await page.waitForTimeout(1000);
+    await page.goto("/exports", { waitUntil: "networkidle" });
+    await page.waitForTimeout(2000);
 
     const currentUrl = page.url();
     if (currentUrl.includes("sign-in")) {
@@ -83,8 +83,8 @@ test.describe("Exports Page - Error Handling", () => {
   });
 
   test("export buttons show loading when clicked", async ({ page }) => {
-    await page.goto("/exports");
-    await page.waitForTimeout(1000);
+    await page.goto("/exports", { waitUntil: "networkidle" });
+    await page.waitForTimeout(2000);
 
     const currentUrl = page.url();
     if (currentUrl.includes("sign-in")) {
