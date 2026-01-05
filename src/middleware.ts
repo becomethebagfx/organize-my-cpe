@@ -73,9 +73,17 @@ const clerkMiddlewareHandler = clerkMiddleware(async (auth, req) => {
     return
   }
 
-  // Protect all other routes - redirect to sign-in if not authenticated
+  // Protect all other routes - require authentication
   const { userId } = await auth()
   if (!userId) {
+    // API routes should return 401, not redirect
+    if (isApiRoute(req)) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+    // Page routes redirect to sign-in
     const signInUrl = new URL('/sign-in', req.url)
     signInUrl.searchParams.set('redirect_url', req.url)
     return Response.redirect(signInUrl)
@@ -101,7 +109,14 @@ export default async function middleware(req: NextRequest) {
     if (isPublicRoute(req)) {
       return NextResponse.next()
     }
-    // For protected routes, redirect to sign-in on auth errors
+    // For protected API routes, return 401 on auth errors
+    if (isApiRoute(req)) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+    // For protected page routes, redirect to sign-in on auth errors
     const signInUrl = new URL('/sign-in', req.url)
     signInUrl.searchParams.set('redirect_url', req.url)
     return NextResponse.redirect(signInUrl)
