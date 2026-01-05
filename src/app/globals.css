@@ -2,50 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * OrganizeMyCPE Design System
+ * Aesthetic: Corporate Precision meets Modern Warmth
+ * Palette: Deep Teal + Warm Slate + Crisp Accents
+ */
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Brand: Deep Teal - trustworthy, professional, distinct from generic blue */
+    --brand-primary: 173 58% 39%;           /* #297373 - Deep Teal */
+    --brand-primary-light: 173 45% 50%;     /* Lighter teal for hover */
+    --brand-accent: 28 85% 55%;             /* #E5A84B - Warm Amber for CTAs */
+
+    /* Backgrounds: Warm neutrals, not cold grays */
+    --background: 40 20% 98%;               /* #FDFCFA - Warm off-white */
+    --foreground: 220 25% 12%;              /* #181D24 - Deep slate, not pure black */
+
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 25% 12%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --popover-foreground: 220 25% 12%;
+
+    --primary: 173 58% 39%;                 /* Deep Teal */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 15% 94%;                /* Warm light gray */
+    --secondary-foreground: 220 25% 12%;
+
+    --muted: 40 12% 92%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 28 85% 55%;                   /* Warm Amber */
+    --accent-foreground: 220 25% 12%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 87%;
+    --input: 220 13% 87%;
+    --ring: 173 58% 39%;
+
+    --radius: 0.625rem;
+
+    /* Status colors */
+    --success: 158 64% 40%;                 /* #26A269 */
+    --warning: 38 92% 50%;                  /* #F5A623 */
+    --info: 199 89% 48%;                    /* #0EA5E9 */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --background: 220 20% 8%;
+    --foreground: 40 15% 95%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 40 15% 95%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 40 15% 95%;
+
+    --primary: 173 55% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 40 15% 95%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 28 80% 58%;
+    --accent-foreground: 220 25% 12%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 173 55% 50%;
   }
 }
 
@@ -53,8 +87,76 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  }
+
+  /* Typography refinements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+
+  /* Focus states with brand color */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer components {
+  /* Page containers */
+  .page-container {
+    @apply min-h-screen bg-background;
+  }
+
+  /* Consistent header styling */
+  .site-header {
+    @apply border-b border-border bg-white/80 backdrop-blur-sm;
+  }
+
+  /* Card with subtle shadow */
+  .card-elevated {
+    @apply rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md;
+  }
+
+  /* Primary button with brand styling */
+  .btn-brand {
+    @apply inline-flex items-center justify-center rounded-full bg-[hsl(var(--brand-primary))] px-6 py-2.5 text-sm font-medium text-white transition-all hover:bg-[hsl(var(--brand-primary-light))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand-primary))] focus:ring-offset-2;
+  }
+
+  /* Accent button for key CTAs */
+  .btn-accent {
+    @apply inline-flex items-center justify-center rounded-full bg-[hsl(var(--brand-accent))] px-6 py-2.5 text-sm font-medium text-white transition-all hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand-accent))] focus:ring-offset-2;
+  }
+
+  /* Status badges */
+  .badge-success {
+    @apply inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20;
+  }
+
+  .badge-warning {
+    @apply inline-flex items-center rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20;
+  }
+
+  /* Prose for legal/content pages */
+  .prose-brand {
+    @apply prose prose-slate max-w-none;
+  }
+
+  .prose-brand h2 {
+    @apply text-2xl font-semibold text-foreground mt-10 mb-4 first:mt-0;
+  }
+
+  .prose-brand p {
+    @apply text-muted-foreground leading-relaxed;
+  }
+
+  .prose-brand a {
+    @apply text-[hsl(var(--brand-primary))] hover:underline;
   }
 }

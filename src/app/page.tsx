@@ -26,9 +26,9 @@ const Button = ({
   const baseStyles = "inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants = {
-    primary: "bg-black text-white hover:bg-gray-800 hover:ring-gray-900 border border-transparent shadow-sm",
-    secondary: "bg-white text-gray-700 border border-gray-200 hover:border-gray-300 hover:bg-gray-50",
-    text: "text-gray-600 hover:text-black bg-transparent"
+    primary: "bg-brand-primary text-white hover:bg-brand-primary-light border border-transparent shadow-sm",
+    secondary: "bg-white text-gray-700 border border-gray-200 hover:border-brand-primary/30 hover:bg-gray-50",
+    text: "text-gray-600 hover:text-brand-primary bg-transparent"
   };
 
   return (
@@ -81,12 +81,12 @@ export default function LandingPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight">
-              <div className="h-6 w-6 rounded bg-black"></div>
+              <div className="h-6 w-6 rounded bg-brand-primary"></div>
               <span>OrganizeMyCPE</span>
             </Link>
             <div className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-500">
-              <a href="#features" className="hover:text-black transition-colors">Features</a>
-              <a href="#pricing" className="hover:text-black transition-colors">Pricing</a>
+              <a href="#features" className="hover:text-brand-primary transition-colors">Features</a>
+              <a href="#pricing" className="hover:text-brand-primary transition-colors">Pricing</a>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -110,7 +110,7 @@ export default function LandingPage() {
           {/* Badge */}
           <div className="mx-auto mb-8 w-fit animate-fade-in-up">
             <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-gray-600">
-              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-brand-primary"></span>
               AI-Powered Certificate Extraction
               <ArrowRight className="ml-1 h-3 w-3" />
             </span>
@@ -148,7 +148,7 @@ export default function LandingPage() {
                     {/* Header */}
                     <div className="border-b border-gray-100 px-6 py-4 flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                            <div className="h-8 w-8 bg-black rounded-lg"></div>
+                            <div className="h-8 w-8 bg-brand-primary rounded-lg"></div>
                             <span className="font-semibold text-gray-900">OrganizeMyCPE</span>
                         </div>
                         <div className="flex gap-3 items-center">
@@ -160,7 +160,7 @@ export default function LandingPage() {
                         {/* Sidebar */}
                         <div className="w-56 hidden md:block border-r border-gray-100 p-4 bg-gray-50/50">
                              <div className="space-y-1">
-                                <div className="h-9 w-full bg-black text-white text-sm flex items-center px-3 rounded-lg font-medium">Dashboard</div>
+                                <div className="h-9 w-full bg-brand-primary text-white text-sm flex items-center px-3 rounded-lg font-medium">Dashboard</div>
                                 <div className="h-9 w-full text-gray-500 text-sm flex items-center px-3 rounded-lg">My Courses</div>
                                 <div className="h-9 w-full text-gray-500 text-sm flex items-center px-3 rounded-lg">Upload</div>
                                 <div className="h-9 w-full text-gray-500 text-sm flex items-center px-3 rounded-lg">Exports</div>
@@ -169,7 +169,7 @@ export default function LandingPage() {
                         {/* Main Content */}
                         <div className="flex-1 p-6 bg-gray-50/30">
                             {/* Stats */}
-                            <div className="grid grid-cols-3 gap-4 mb-6">
+                            <div className="grid grid-cols-1 min-[400px]:grid-cols-3 gap-2 sm:gap-4 mb-6">
                                 <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
                                     <div className="text-xs text-gray-500 mb-2">Credits Earned</div>
                                     <div className="text-2xl font-bold text-gray-900">32 <span className="text-sm font-normal text-gray-400">/ 40</span></div>
@@ -225,7 +225,7 @@ export default function LandingPage() {
               </div>
             </div>
             {/* Glow effect behind */}
-            <div className="absolute -top-12 left-1/2 -z-10 h-[300px] w-[600px] -translate-x-1/2 bg-blue-500/20 blur-[100px]"></div>
+            <div className="absolute -top-12 left-1/2 -z-10 h-[300px] w-[600px] -translate-x-1/2 bg-brand-primary/20 blur-[100px]"></div>
           </div>
         </div>
       </section>
@@ -233,8 +233,8 @@ export default function LandingPage() {
       {/* Social Proof Marquee */}
       <section className="border-y border-gray-200 bg-white py-12 overflow-hidden">
         <p className="text-center text-sm font-medium text-gray-500 mb-8">Trusted by forward-thinking CPAs</p>
-        <div className="relative flex overflow-hidden group max-w-full">
-          <div className="animate-marquee flex gap-8 sm:gap-16 whitespace-nowrap justify-center opacity-40 grayscale px-4">
+        <div className="relative flex overflow-hidden group w-full">
+          <div className="animate-marquee flex gap-4 sm:gap-8 md:gap-16 whitespace-nowrap justify-center opacity-40 grayscale px-4">
             <span className="text-xl font-bold font-serif">Deloitte.</span>
             <span className="text-xl font-bold font-sans">KPMG</span>
             <span className="text-xl font-bold font-mono">PWC</span>
@@ -299,15 +299,15 @@ export default function LandingPage() {
            </div>
 
            {/* Tall Card - All 50 States */}
-           <div className="group relative overflow-hidden rounded-3xl border border-gray-800 bg-black p-6 shadow-sm transition-shadow hover:shadow-md md:row-span-2 text-white">
-             <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-700 bg-gray-900 mb-4">
+           <div className="group relative overflow-hidden rounded-3xl border border-brand-primary/30 bg-brand-primary p-6 shadow-sm transition-shadow hover:shadow-md md:row-span-2 text-white">
+             <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/10 mb-4">
                <Globe className="h-5 w-5 text-white" />
              </div>
              <h3 className="text-lg font-semibold">All 50 States + DC</h3>
-             <p className="mt-2 text-sm text-gray-400">We track unique CPE rules for every state board, including Ethics, A&A, and technical requirements.</p>
+             <p className="mt-2 text-sm text-white/70">We track unique CPE rules for every state board, including Ethics, A&A, and technical requirements.</p>
 
              {/* State grid showing all states */}
-             <div className="mt-6 grid grid-cols-5 gap-1.5">
+             <div className="mt-6 grid grid-cols-5 sm:grid-cols-5 gap-1">
                 {['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL',
                   'GA','HI','ID','IL','IN','IA','KS','KY','LA','ME',
                   'MD','MA','MI','MN','MS','MO','MT','NE','NV','NH',
@@ -317,8 +317,8 @@ export default function LandingPage() {
                       key={state}
                       className={`rounded px-1 py-1.5 text-center text-[10px] font-mono transition-all ${
                         ['NY', 'CA', 'TX', 'FL', 'IL'].includes(state)
-                          ? 'bg-white text-black font-medium'
-                          : 'bg-gray-800/80 text-gray-400'
+                          ? 'bg-white text-brand-primary font-medium'
+                          : 'bg-white/10 text-white/70'
                       }`}
                     >
                       {state}
@@ -326,7 +326,7 @@ export default function LandingPage() {
                 ))}
              </div>
 
-             <p className="mt-4 text-xs text-gray-500">Highlighted: Most common jurisdictions</p>
+             <p className="mt-4 text-xs text-white/50">Highlighted: Most common jurisdictions</p>
            </div>
 
            {/* Small Card */}
@@ -382,9 +382,9 @@ export default function LandingPage() {
             </div>
 
             {/* Pro Plan */}
-            <div className="rounded-3xl border-2 border-black bg-white p-8 relative">
+            <div className="rounded-3xl border-2 border-brand-primary bg-white p-8 relative">
               <div className="absolute -top-3 left-6">
-                <span className="bg-black text-white text-xs font-medium px-3 py-1 rounded-full">Most popular</span>
+                <span className="bg-brand-primary text-white text-xs font-medium px-3 py-1 rounded-full">Most popular</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Pro</h3>
               <p className="text-sm text-gray-500 mt-1">Full access</p>
@@ -394,19 +394,19 @@ export default function LandingPage() {
               </div>
               <ul className="mt-8 space-y-3 text-sm text-gray-600">
                 <li className="flex items-center gap-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-black"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-brand-primary"></div>
                   Unlimited document uploads
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-black"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-brand-primary"></div>
                   All 50 state exports
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-black"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-brand-primary"></div>
                   Full compliance dashboard
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-black"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-brand-primary"></div>
                   Priority support
                 </li>
               </ul>
@@ -426,8 +426,9 @@ export default function LandingPage() {
                   <p className="text-sm text-gray-500 mt-1">&copy; 2025 Organize My CPE. All rights reserved.</p>
               </div>
               <div className="flex gap-6 text-sm text-gray-500">
-                  <Link href="/privacy" className="hover:text-black">Privacy</Link>
-                  <Link href="/terms" className="hover:text-black">Terms</Link>
+                  <Link href="/privacy" className="hover:text-brand-primary transition-colors">Privacy</Link>
+                  <Link href="/terms" className="hover:text-brand-primary transition-colors">Terms</Link>
+                  <Link href="/contact" className="hover:text-brand-primary transition-colors">Contact</Link>
               </div>
           </div>
       </footer>

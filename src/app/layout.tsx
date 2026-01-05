@@ -8,7 +8,7 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
-const siteUrl = "https://organize-my-cpe.vercel.app"
+const siteUrl = "https://organizemycpe.com"
 
 export const metadata: Metadata = {
   title: {

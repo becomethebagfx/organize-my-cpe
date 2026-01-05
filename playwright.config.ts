@@ -6,8 +6,11 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: "list",
+  reporter: "line",
   timeout: 30000,
+  expect: {
+    timeout: 10000,
+  },
 
   use: {
     baseURL: process.env.BASE_URL || "http://localhost:3005",
@@ -19,6 +22,14 @@ export default defineConfig({
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "Mobile Safari",
+      use: { ...devices["iPhone 14"] },
+    },
+    {
+      name: "Mobile Chrome",
+      use: { ...devices["Pixel 7"] },
     },
   ],
 

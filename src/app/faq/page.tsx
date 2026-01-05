@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, ChevronDown } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "FAQ - Frequently Asked Questions",
+  title: "FAQ - CPE Tracking Questions Answered | Organize My CPE",
   description: "Common questions about Organize My CPE - CPE tracking software for CPAs. Learn about features, pricing, state requirements, and AI extraction.",
+  alternates: {
+    canonical: "https://organizemycpe.com/faq",
+  },
 }
 
 const faqs = [

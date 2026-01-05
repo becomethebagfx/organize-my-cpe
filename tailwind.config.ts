@@ -10,6 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // OrganizeMyCPE Brand Colors
+        brand: {
+          primary: "#297373",      // Deep Teal - trustworthy, professional
+          "primary-light": "#3A9494",
+          accent: "#E5A84B",       // Warm Amber - CTAs, highlights
+          success: "#26A269",      // Green for compliance
+          warning: "#F5A623",      // Warning states
+        },
+        // Semantic colors from CSS variables
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
