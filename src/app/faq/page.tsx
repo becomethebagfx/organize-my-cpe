@@ -101,11 +101,11 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-white">
+      <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
+          <Link href="/" className="flex items-center gap-2 text-lg font-semibold text-foreground">
             <ArrowLeft className="h-5 w-5" />
             Back to Home
           </Link>
@@ -116,9 +116,9 @@ export default function FAQPage() {
       </header>
 
       {/* Hero */}
-      <section className="bg-white border-b">
+      <section className="bg-card border-b border-border">
         <div className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
+          <h1 className="text-4xl font-bold mb-4 text-foreground">Frequently Asked Questions</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Everything you need to know about tracking your CPE credits with Organize My CPE
           </p>
@@ -130,14 +130,14 @@ export default function FAQPage() {
         <div className="max-w-3xl mx-auto space-y-12">
           {faqs.map((category) => (
             <section key={category.category}>
-              <h2 className="text-2xl font-bold mb-6 text-primary">{category.category}</h2>
+              <h2 className="text-2xl font-bold mb-6 text-brand-primary">{category.category}</h2>
               <div className="space-y-4">
                 {category.questions.map((faq, index) => (
                   <details
                     key={index}
-                    className="group bg-white rounded-lg border p-4 cursor-pointer"
+                    className="group bg-card rounded-lg border border-border p-4 cursor-pointer"
                   >
-                    <summary className="flex items-center justify-between font-medium list-none">
+                    <summary className="flex items-center justify-between font-medium list-none text-foreground">
                       {faq.question}
                       <ChevronDown className="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180" />
                     </summary>
@@ -152,8 +152,8 @@ export default function FAQPage() {
         </div>
 
         {/* CTA */}
-        <div className="max-w-3xl mx-auto mt-16 text-center bg-primary/5 rounded-2xl p-8">
-          <h2 className="text-2xl font-bold mb-4">Still have questions?</h2>
+        <div className="max-w-3xl mx-auto mt-16 text-center bg-brand-primary/5 rounded-2xl p-8">
+          <h2 className="text-2xl font-bold mb-4 text-foreground">Still have questions?</h2>
           <p className="text-muted-foreground mb-6">
             Can&apos;t find what you&apos;re looking for? Start tracking your CPE for free and see for yourself.
           </p>
@@ -169,12 +169,12 @@ export default function FAQPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t bg-white mt-12">
+      <footer className="border-t border-border bg-card mt-12">
         <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Organize My CPE. All rights reserved.</p>
           <div className="flex gap-4 justify-center mt-4">
-            <Link href="/privacy" className="hover:text-primary">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-primary">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-brand-primary">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-brand-primary">Terms of Service</Link>
           </div>
         </div>
       </footer>
