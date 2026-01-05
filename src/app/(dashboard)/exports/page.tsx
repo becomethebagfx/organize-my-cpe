@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Download, FileSpreadsheet, FileText, Archive, Loader2 } from "lucide-react"
+import { Download, FileSpreadsheet, FileText, Archive, Loader2, AlertCircle, CheckCircle2 } from "lucide-react"
 
 interface ExportOption {
   id: string
@@ -46,30 +46,57 @@ const EXPORT_OPTIONS: ExportOption[] = [
 
 export default function ExportsPage() {
   const [exporting, setExporting] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
 
   const handleExport = async (type: string) => {
     setExporting(type)
+    setError(null)
+    setSuccess(null)
     try {
       const response = await fetch(`/api/exports/${type.toLowerCase()}`, {
         method: "POST",
       })
 
-      if (response.ok) {
-        const blob = await response.blob()
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement("a")
-        a.href = url
-        a.download = `cpe-export-${type.toLowerCase()}.${getExtension(type)}`
-        document.body.appendChild(a)
-        a.click()
-        window.URL.revokeObjectURL(url)
-        document.body.removeChild(a)
+      // Check if response is JSON (error) or file (success)
+      const contentType = response.headers.get("content-type")
+
+      if (!response.ok || contentType?.includes("application/json")) {
+        // API returned an error
+        const data = await response.json()
+        throw new Error(data.error || "Export failed")
       }
-    } catch (error) {
-      console.error("Export failed:", error)
+
+      const blob = await response.blob()
+
+      // Check for empty file
+      if (blob.size === 0) {
+        throw new Error("No courses found to export. Upload some certificates first!")
+      }
+
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = `cpe-export-${type.toLowerCase()}.${getExtension(type)}`
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+      document.body.removeChild(a)
+
+      setSuccess(`${getExportName(type)} downloaded successfully!`)
+      setTimeout(() => setSuccess(null), 5000)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Export failed"
+      setError(message)
+      console.error("Export failed:", err)
     } finally {
       setExporting(null)
     }
+  }
+
+  const getExportName = (type: string) => {
+    const option = EXPORT_OPTIONS.find(o => o.type === type)
+    return option?.title || type
   }
 
   const getExtension = (type: string) => {
@@ -95,6 +122,20 @@ export default function ExportsPage() {
           Download your CPE data in various formats
         </p>
       </div>
+
+      {/* Error/Success Messages */}
+      {error && (
+        <div className="flex items-center gap-2 p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive">
+          <AlertCircle className="h-5 w-5 flex-shrink-0" />
+          <p className="text-sm">{error}</p>
+        </div>
+      )}
+      {success && (
+        <div className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
+          <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
+          <p className="text-sm">{success}</p>
+        </div>
+      )}
 
       {/* General Exports */}
       <Card>

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Search, Save, Loader2, Download, Trash2, AlertTriangle } from "lucide-react"
+import { Search, Save, Loader2, Download, Trash2, AlertTriangle, CreditCard } from "lucide-react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -83,6 +83,8 @@ export default function SettingsPage() {
   const [saved, setSaved] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [upgrading, setUpgrading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     // Load saved states from localStorage for now
@@ -93,17 +95,30 @@ export default function SettingsPage() {
   }, [])
 
   const handleUpgrade = async () => {
+    setUpgrading(true)
+    setError(null)
     try {
       const response = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       })
       const data = await response.json()
-      if (data.success && data.data?.url) {
-        window.location.href = data.data.url
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Failed to create checkout session")
       }
-    } catch (error) {
-      console.error("Failed to start checkout:", error)
+
+      if (data.data?.url) {
+        window.location.href = data.data.url
+      } else {
+        throw new Error("No checkout URL returned")
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to start upgrade"
+      setError(message)
+      console.error("Checkout failed:", err)
+    } finally {
+      setUpgrading(false)
     }
   }
 
@@ -265,11 +280,30 @@ export default function SettingsPage() {
           </div>
           <div className="space-y-2">
             <Label>Plan</Label>
-            <div className="flex items-center gap-4">
-              <span className="text-sm">Free Plan</span>
-              <Button variant="outline" size="sm" onClick={handleUpgrade}>
-                Upgrade to Pro
-              </Button>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-4">
+                <span className="text-sm">Free Plan</span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleUpgrade}
+                  disabled={upgrading}
+                  className="gap-2"
+                >
+                  {upgrading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <CreditCard className="h-4 w-4" />
+                  )}
+                  {upgrading ? "Processing..." : "Upgrade to Pro"}
+                </Button>
+              </div>
+              {error && (
+                <div className="text-sm text-destructive flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4" />
+                  {error}
+                </div>
+              )}
             </div>
           </div>
         </CardContent>

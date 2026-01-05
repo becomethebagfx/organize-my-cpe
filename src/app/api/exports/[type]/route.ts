@@ -4,6 +4,7 @@ import {
   generateCanonicalExport,
   generateStateExport,
   generateComplianceSummary,
+  NoDataError,
 } from '@/lib/export-generator'
 import { getOrCreateUserProfile } from '@/lib/auth'
 import { ExportType } from '@prisma/client'
@@ -133,6 +134,15 @@ export async function POST(
     })
   } catch (error) {
     console.error('Export error:', error)
+
+    // Handle NoDataError specifically
+    if (error instanceof NoDataError) {
+      return NextResponse.json(
+        { success: false, error: error.message },
+        { status: 400 }
+      )
+    }
+
     return NextResponse.json(
       { success: false, error: 'Export failed' },
       { status: 500 }

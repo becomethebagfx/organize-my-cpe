@@ -198,6 +198,14 @@ export async function generateComplianceSummary(userId: string): Promise<ExportR
   return generateFile(summaryRows, `cpe-summary-${formatDateForFilename(new Date())}`, 'xlsx')
 }
 
+// Custom error for empty export data
+export class NoDataError extends Error {
+  constructor(message = 'No courses found to export') {
+    super(message)
+    this.name = 'NoDataError'
+  }
+}
+
 /**
  * Generate file in specified format
  */
@@ -207,12 +215,7 @@ function generateFile(
   format: 'csv' | 'xlsx'
 ): ExportResult {
   if (rows.length === 0) {
-    // Empty result
-    return {
-      filename: `${filename}.${format}`,
-      mimeType: format === 'csv' ? 'text/csv' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      data: Buffer.from(''),
-    }
+    throw new NoDataError('No courses found to export. Upload some certificates first!')
   }
 
   const worksheet = XLSX.utils.json_to_sheet(rows)
