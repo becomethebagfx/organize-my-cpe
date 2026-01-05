@@ -101,7 +101,7 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -135,11 +135,11 @@ export default function FAQPage() {
                 {category.questions.map((faq, index) => (
                   <details
                     key={index}
-                    className="group bg-card rounded-lg border border-border p-4 cursor-pointer"
+                    className="group bg-card rounded-lg border border-border p-4 cursor-pointer overflow-hidden"
                   >
-                    <summary className="flex items-center justify-between font-medium list-none text-foreground">
-                      {faq.question}
-                      <ChevronDown className="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180" />
+                    <summary className="flex items-center justify-between gap-2 font-medium list-none text-foreground">
+                      <span className="text-left">{faq.question}</span>
+                      <ChevronDown className="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180 shrink-0" />
                     </summary>
                     <p className="mt-4 text-muted-foreground leading-relaxed">
                       {faq.answer}
