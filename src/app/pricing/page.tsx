@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Check, ArrowLeft } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: "Pricing - CPE Tracking Software for CPAs | Organize My CPE",
+  title: "Pricing - CPE Tracking Plans",
   description: "Simple, transparent pricing for CPE tracking. Free tier available. Pro plan just $9.99/year for unlimited uploads and all 51 state compliance tracking.",
   alternates: {
     canonical: "https://organizemycpe.com/pricing",

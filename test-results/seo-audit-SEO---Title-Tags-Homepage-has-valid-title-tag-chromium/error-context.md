@@ -1,0 +1,239 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - link "OrganizeMyCPE" [ref=e6] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e8]: OrganizeMyCPE
+          - generic [ref=e9]:
+            - link "Features" [ref=e10] [cursor=pointer]:
+              - /url: "#features"
+            - link "Pricing" [ref=e11] [cursor=pointer]:
+              - /url: "#pricing"
+        - generic [ref=e12]:
+          - link "Log in" [ref=e13] [cursor=pointer]:
+            - /url: /sign-in
+            - button "Log in" [ref=e14]
+          - link "Sign up" [ref=e15] [cursor=pointer]:
+            - /url: /sign-up
+            - button "Sign up" [ref=e16]
+    - generic [ref=e19]:
+      - generic [ref=e21]:
+        - text: AI-Powered Certificate Extraction
+        - img [ref=e23]
+      - heading "CPE compliance on autopilot." [level=1] [ref=e25]:
+        - text: CPE compliance
+        - text: on autopilot.
+      - paragraph [ref=e26]: Stop wrestling with spreadsheets. Upload your certificates, we'll extract the data, track your compliance, and generate audit-ready reports.
+      - generic [ref=e27]:
+        - link "Start for free" [ref=e28] [cursor=pointer]:
+          - /url: /sign-up
+          - button "Start for free" [ref=e29]
+        - link "See how it works" [ref=e30] [cursor=pointer]:
+          - /url: "#features"
+          - button "See how it works" [ref=e31]:
+            - text: See how it works
+            - img [ref=e32]
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - generic [ref=e41]: OrganizeMyCPE
+          - generic [ref=e43]: John Smith, CPA
+        - generic [ref=e45]:
+          - generic [ref=e47]:
+            - generic [ref=e48]: Dashboard
+            - generic [ref=e49]: My Courses
+            - generic [ref=e50]: Upload
+            - generic [ref=e51]: Exports
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - generic [ref=e54]:
+                - generic [ref=e55]: Credits Earned
+                - generic [ref=e56]: 32 / 40
+              - generic [ref=e59]:
+                - generic [ref=e60]: Ethics Credits
+                - generic [ref=e61]: 4 / 4
+              - generic [ref=e64]:
+                - generic [ref=e65]: States Tracked
+                - generic [ref=e66]: NY, CA
+                - generic [ref=e67]: All compliant
+            - generic [ref=e68]:
+              - generic [ref=e69]:
+                - generic [ref=e70]: Recent Courses
+                - button "View all" [ref=e71] [cursor=pointer]
+              - generic [ref=e72]:
+                - generic [ref=e73]:
+                  - generic [ref=e74]:
+                    - generic [ref=e75]: "4.0"
+                    - generic [ref=e76]:
+                      - generic [ref=e77]: Ethics in Professional Practice
+                      - generic [ref=e78]: Ethics
+                  - generic [ref=e79]: Dec 15
+                - generic [ref=e80]:
+                  - generic [ref=e81]:
+                    - generic [ref=e82]: "8.0"
+                    - generic [ref=e83]:
+                      - generic [ref=e84]: Advanced Tax Planning Strategies
+                      - generic [ref=e85]: Tax
+                  - generic [ref=e86]: Dec 10
+                - generic [ref=e87]:
+                  - generic [ref=e88]:
+                    - generic [ref=e89]: "4.0"
+                    - generic [ref=e90]:
+                      - generic [ref=e91]: GAAP Update 2024
+                      - generic [ref=e92]: A&A
+                  - generic [ref=e93]: Nov 28
+    - generic [ref=e95]:
+      - paragraph [ref=e96]: Trusted by forward-thinking CPAs
+      - generic [ref=e98]:
+        - generic [ref=e99]: Deloitte.
+        - generic [ref=e100]: KPMG
+        - generic [ref=e101]: PWC
+        - generic [ref=e102]: EY
+        - generic [ref=e103]: Grant Thornton
+        - generic [ref=e104]: BDO
+        - generic [ref=e105]: Deloitte.
+        - generic [ref=e106]: KPMG
+        - generic [ref=e107]: PWC
+        - generic [ref=e108]: EY
+    - generic [ref=e109]:
+      - generic [ref=e110]:
+        - heading "Everything you need to stay compliant." [level=2] [ref=e111]
+        - paragraph [ref=e112]: Powerful features wrapped in a simple interface. We handle the complexity of state boards so you don't have to.
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - img [ref=e116]
+          - heading "AI Extraction" [level=3] [ref=e118]
+          - paragraph [ref=e119]: Drag and drop your PDF certificates. Our AI instantly captures the course name, date, credit amount, and field of study.
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - generic [ref=e122]: PDF
+              - generic [ref=e123]:
+                - generic [ref=e124]: Ethics_Certificate_2024.pdf
+                - generic [ref=e125]: Uploaded just now
+              - img [ref=e126]
+              - generic [ref=e128]: Extracted
+            - generic [ref=e129]:
+              - generic [ref=e130]:
+                - generic [ref=e131]: Course
+                - generic [ref=e132]: Ethics 101
+              - generic [ref=e133]:
+                - generic [ref=e134]: Credits
+                - generic [ref=e135]: "2.0"
+              - generic [ref=e136]:
+                - generic [ref=e137]: Field
+                - generic [ref=e138]: Behavioral Ethics
+              - generic [ref=e139]:
+                - generic [ref=e140]: Date
+                - generic [ref=e141]: Dec 15, 2024
+        - generic [ref=e142]:
+          - img [ref=e144]
+          - heading "All 50 States + DC" [level=3] [ref=e147]
+          - paragraph [ref=e148]: We track unique CPE rules for every state board, including Ethics, A&A, and technical requirements.
+          - generic [ref=e149]:
+            - generic [ref=e150]: AL
+            - generic [ref=e151]: AK
+            - generic [ref=e152]: AZ
+            - generic [ref=e153]: AR
+            - generic [ref=e154]: CA
+            - generic [ref=e155]: CO
+            - generic [ref=e156]: CT
+            - generic [ref=e157]: DE
+            - generic [ref=e158]: DC
+            - generic [ref=e159]: FL
+            - generic [ref=e160]: GA
+            - generic [ref=e161]: HI
+            - generic [ref=e162]: ID
+            - generic [ref=e163]: IL
+            - generic [ref=e164]: IN
+            - generic [ref=e165]: IA
+            - generic [ref=e166]: KS
+            - generic [ref=e167]: KY
+            - generic [ref=e168]: LA
+            - generic [ref=e169]: ME
+            - generic [ref=e170]: MD
+            - generic [ref=e171]: MA
+            - generic [ref=e172]: MI
+            - generic [ref=e173]: MN
+            - generic [ref=e174]: MS
+            - generic [ref=e175]: MO
+            - generic [ref=e176]: MT
+            - generic [ref=e177]: NE
+            - generic [ref=e178]: NV
+            - generic [ref=e179]: NH
+            - generic [ref=e180]: NJ
+            - generic [ref=e181]: NM
+            - generic [ref=e182]: NY
+            - generic [ref=e183]: NC
+            - generic [ref=e184]: ND
+            - generic [ref=e185]: OH
+            - generic [ref=e186]: OK
+            - generic [ref=e187]: OR
+            - generic [ref=e188]: PA
+            - generic [ref=e189]: RI
+            - generic [ref=e190]: SC
+            - generic [ref=e191]: SD
+            - generic [ref=e192]: TN
+            - generic [ref=e193]: TX
+            - generic [ref=e194]: UT
+            - generic [ref=e195]: VT
+            - generic [ref=e196]: VA
+            - generic [ref=e197]: WA
+            - generic [ref=e198]: WV
+            - generic [ref=e199]: WI
+            - generic [ref=e200]: WY
+          - paragraph [ref=e201]: "Highlighted: Most common jurisdictions"
+        - generic [ref=e202]:
+          - img [ref=e204]
+          - heading "Audit Ready" [level=3] [ref=e207]
+          - paragraph [ref=e208]: One-click export of all your certificates and a summary report.
+        - generic [ref=e209]:
+          - img [ref=e211]
+          - heading "Secure Storage" [level=3] [ref=e214]
+          - paragraph [ref=e215]: Bank-level AES-256 encryption for all your documents.
+    - generic [ref=e217]:
+      - generic [ref=e218]:
+        - heading "Simple, transparent pricing" [level=2] [ref=e219]
+        - paragraph [ref=e220]: Less than a single CPE course.
+      - generic [ref=e221]:
+        - generic [ref=e222]:
+          - heading "Free" [level=3] [ref=e223]
+          - paragraph [ref=e224]: Try it out
+          - generic [ref=e225]: $0
+          - list [ref=e226]:
+            - listitem [ref=e227]: Up to 10 document uploads
+            - listitem [ref=e229]: 1 state export
+            - listitem [ref=e231]: Basic compliance dashboard
+          - link "Get started" [ref=e233] [cursor=pointer]:
+            - /url: /sign-up
+            - button "Get started" [ref=e234]
+        - generic [ref=e235]:
+          - generic [ref=e236]: Most popular
+          - heading "Pro" [level=3] [ref=e237]
+          - paragraph [ref=e238]: Full access
+          - generic [ref=e239]: $9.99/year
+          - list [ref=e240]:
+            - listitem [ref=e241]: Unlimited document uploads
+            - listitem [ref=e243]: All 50 state exports
+            - listitem [ref=e245]: Full compliance dashboard
+            - listitem [ref=e247]: Priority support
+          - link "Get Pro" [ref=e249] [cursor=pointer]:
+            - /url: /sign-up
+            - button "Get Pro" [ref=e250]
+    - contentinfo [ref=e251]:
+      - generic [ref=e252]:
+        - generic [ref=e253]:
+          - text: OrganizeMyCPE
+          - paragraph [ref=e254]: © 2025 Organize My CPE. All rights reserved.
+        - generic [ref=e255]:
+          - link "Privacy" [ref=e256] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=e257] [cursor=pointer]:
+            - /url: /terms
+          - link "Contact" [ref=e258] [cursor=pointer]:
+            - /url: /contact
+  - alert [ref=e259]
+```

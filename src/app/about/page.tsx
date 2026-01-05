@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Target, Users, Zap, Shield, CheckCircle } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "About Us - CPE Tracking Software for CPAs | Organize My CPE",
+  title: "About Us - CPE Tracking for CPAs",
   description: "Learn about Organize My CPE - the AI-powered CPE tracking software built for CPAs. Our mission is to simplify CPE compliance across all 51 US jurisdictions.",
   alternates: {
     canonical: "https://organizemycpe.com/about",

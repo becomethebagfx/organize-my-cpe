@@ -1,0 +1,111 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Back to Home" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e6]
+          - text: Back to Home
+        - link "Get Started Free" [ref=e8] [cursor=pointer]:
+          - /url: /sign-up
+    - generic [ref=e10]:
+      - heading "Frequently Asked Questions" [level=1] [ref=e11]
+      - paragraph [ref=e12]: Everything you need to know about tracking your CPE credits with Organize My CPE
+    - main [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - heading "General" [level=2] [ref=e16]
+          - generic [ref=e17]:
+            - group [ref=e18] [cursor=pointer]:
+              - generic "What is Organize My CPE?" [ref=e19]:
+                - generic [ref=e20]: What is Organize My CPE?
+                - img [ref=e21]
+            - group [ref=e23] [cursor=pointer]:
+              - generic "Who is this for?" [ref=e24]:
+                - generic [ref=e25]: Who is this for?
+                - img [ref=e26]
+            - group [ref=e28] [cursor=pointer]:
+              - generic "How is this different from spreadsheets?" [ref=e29]:
+                - generic [ref=e30]: How is this different from spreadsheets?
+                - img [ref=e31]
+        - generic [ref=e33]:
+          - heading "CPE Requirements" [level=2] [ref=e34]
+          - generic [ref=e35]:
+            - group [ref=e36] [cursor=pointer]:
+              - generic "How many CPE credits do I need?" [ref=e37]:
+                - generic [ref=e38]: How many CPE credits do I need?
+                - img [ref=e39]
+            - group [ref=e41] [cursor=pointer]:
+              - generic "Which states does Organize My CPE support?" [ref=e42]:
+                - generic [ref=e43]: Which states does Organize My CPE support?
+                - img [ref=e44]
+            - group [ref=e46] [cursor=pointer]:
+              - generic "What are the different CPE cycle types?" [ref=e47]:
+                - generic [ref=e48]: What are the different CPE cycle types?
+                - img [ref=e49]
+        - generic [ref=e51]:
+          - heading "AI Extraction" [level=2] [ref=e52]
+          - generic [ref=e53]:
+            - group [ref=e54] [cursor=pointer]:
+              - generic "How does the AI extraction work?" [ref=e55]:
+                - generic [ref=e56]: How does the AI extraction work?
+                - img [ref=e57]
+            - group [ref=e59] [cursor=pointer]:
+              - generic "What file formats are supported?" [ref=e60]:
+                - generic [ref=e61]: What file formats are supported?
+                - img [ref=e62]
+            - group [ref=e64] [cursor=pointer]:
+              - generic "What if the AI extraction is incorrect?" [ref=e65]:
+                - generic [ref=e66]: What if the AI extraction is incorrect?
+                - img [ref=e67]
+        - generic [ref=e69]:
+          - heading "Pricing & Billing" [level=2] [ref=e70]
+          - generic [ref=e71]:
+            - group [ref=e72] [cursor=pointer]:
+              - generic "How much does Organize My CPE cost?" [ref=e73]:
+                - generic [ref=e74]: How much does Organize My CPE cost?
+                - img [ref=e75]
+            - group [ref=e77] [cursor=pointer]:
+              - generic "Is there a free trial?" [ref=e78]:
+                - generic [ref=e79]: Is there a free trial?
+                - img [ref=e80]
+            - group [ref=e82] [cursor=pointer]:
+              - generic "Can I cancel anytime?" [ref=e83]:
+                - generic [ref=e84]: Can I cancel anytime?
+                - img [ref=e85]
+        - generic [ref=e87]:
+          - heading "Data & Security" [level=2] [ref=e88]
+          - generic [ref=e89]:
+            - group [ref=e90] [cursor=pointer]:
+              - generic "Is my data secure?" [ref=e91]:
+                - generic [ref=e92]: Is my data secure?
+                - img [ref=e93]
+            - group [ref=e95] [cursor=pointer]:
+              - generic "Can I export my data?" [ref=e96]:
+                - generic [ref=e97]: Can I export my data?
+                - img [ref=e98]
+            - group [ref=e100] [cursor=pointer]:
+              - generic "Can I delete my account?" [ref=e101]:
+                - generic [ref=e102]: Can I delete my account?
+                - img [ref=e103]
+      - generic [ref=e105]:
+        - heading "Still have questions?" [level=2] [ref=e106]
+        - paragraph [ref=e107]: Can't find what you're looking for? Start tracking your CPE for free and see for yourself.
+        - generic [ref=e108]:
+          - link "Get Started Free" [ref=e109] [cursor=pointer]:
+            - /url: /sign-up
+          - link "Contact Support" [ref=e110] [cursor=pointer]:
+            - /url: mailto:support@organizemycpe.com
+    - contentinfo [ref=e111]:
+      - generic [ref=e112]:
+        - paragraph [ref=e113]: © 2026 Organize My CPE. All rights reserved.
+        - generic [ref=e114]:
+          - link "Privacy Policy" [ref=e115] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms of Service" [ref=e116] [cursor=pointer]:
+            - /url: /terms
+  - alert [ref=e117]
+```

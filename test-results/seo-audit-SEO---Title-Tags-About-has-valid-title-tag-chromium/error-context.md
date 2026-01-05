@@ -1,0 +1,130 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Organize My CPE" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e6]: Organize My CPE
+        - generic [ref=e7]:
+          - link "FAQ" [ref=e8] [cursor=pointer]:
+            - /url: /faq
+          - link "Pricing" [ref=e9] [cursor=pointer]:
+            - /url: /pricing
+          - link "Sign In" [ref=e10] [cursor=pointer]:
+            - /url: /sign-in
+            - button "Sign In" [ref=e11]
+    - main [ref=e12]:
+      - link "Back to Home" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - img [ref=e14]
+        - text: Back to Home
+      - generic [ref=e16]:
+        - heading "About Organize My CPE" [level=1] [ref=e17]
+        - paragraph [ref=e18]: "We built Organize My CPE to solve a problem every CPA faces: tracking continuing professional education credits across multiple states with different rules, cycles, and requirements. Our AI-powered platform makes CPE compliance simple."
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - img [ref=e21]
+          - heading "Our Mission" [level=2] [ref=e25]
+        - paragraph [ref=e26]: To eliminate the stress and confusion of CPE tracking for accounting professionals. We believe CPAs should spend their time serving clients, not wrestling with spreadsheets and state board requirements. Our platform handles the complexity so you can focus on what matters.
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - img [ref=e29]
+          - heading "Who We Serve" [level=2] [ref=e34]
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - heading "CPAs & Accountants" [level=3] [ref=e37]
+            - paragraph [ref=e38]: Licensed professionals who need to maintain CPE credits for license renewal across one or multiple state jurisdictions.
+          - generic [ref=e39]:
+            - heading "Multi-State Practitioners" [level=3] [ref=e40]
+            - paragraph [ref=e41]: CPAs licensed in multiple states who face the challenge of tracking different requirements, cycles, and subject-specific mandates.
+          - generic [ref=e42]:
+            - heading "Accounting Firms" [level=3] [ref=e43]
+            - paragraph [ref=e44]: Firms that need to ensure their staff maintains proper CPE compliance and wants to streamline the tracking process.
+          - generic [ref=e45]:
+            - heading "New CPAs" [level=3] [ref=e46]
+            - paragraph [ref=e47]: Recently licensed professionals learning to navigate CPE requirements for the first time.
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - img [ref=e50]
+          - heading "How It Works" [level=2] [ref=e52]
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]: "1"
+            - generic [ref=e56]:
+              - heading "Upload Your Certificates" [level=3] [ref=e57]
+              - paragraph [ref=e58]: Upload PDF certificates from any CPE provider. Our AI automatically extracts course details, credit hours, and completion dates.
+          - generic [ref=e59]:
+            - generic [ref=e60]: "2"
+            - generic [ref=e61]:
+              - heading "Select Your States" [level=3] [ref=e62]
+              - paragraph [ref=e63]: Choose which states you're licensed in. We know the unique requirements for all 50 states plus DC - cycles, ethics hours, A&A requirements, and more.
+          - generic [ref=e64]:
+            - generic [ref=e65]: "3"
+            - generic [ref=e66]:
+              - heading "Track Your Progress" [level=3] [ref=e67]
+              - paragraph [ref=e68]: View your compliance status at a glance. See exactly how many hours you need in each category for each state.
+          - generic [ref=e69]:
+            - generic [ref=e70]: "4"
+            - generic [ref=e71]:
+              - heading "Generate Reports" [level=3] [ref=e72]
+              - paragraph [ref=e73]: Export state-specific compliance reports ready for license renewal. No more manual compilation.
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - img [ref=e76]
+          - heading "Why Choose Organize My CPE" [level=2] [ref=e79]
+        - list [ref=e80]:
+          - listitem [ref=e81]:
+            - img [ref=e82]
+            - generic [ref=e85]:
+              - strong [ref=e86]: "51 Jurisdictions:"
+              - text: We track requirements for all 50 states plus Washington DC
+          - listitem [ref=e87]:
+            - img [ref=e88]
+            - generic [ref=e91]:
+              - strong [ref=e92]: "AI-Powered:"
+              - text: Upload certificates and let our AI extract the details automatically
+          - listitem [ref=e93]:
+            - img [ref=e94]
+            - generic [ref=e97]:
+              - strong [ref=e98]: "Simple Pricing:"
+              - text: Just $9.99/year - less than the cost of one CPE credit
+          - listitem [ref=e99]:
+            - img [ref=e100]
+            - generic [ref=e103]:
+              - strong [ref=e104]: "State-Specific Reports:"
+              - text: Generate compliance reports formatted for each state board
+          - listitem [ref=e105]:
+            - img [ref=e106]
+            - generic [ref=e109]:
+              - strong [ref=e110]: "Always Current:"
+              - text: We keep up with changing state requirements so you don't have to
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - img [ref=e113]
+          - heading "Your Data is Secure" [level=2] [ref=e115]
+        - paragraph [ref=e116]: We take data security seriously. All data is encrypted in transit and at rest. Your CPE records and certificates are stored securely and only accessible by you. We never share or sell your information.
+      - generic [ref=e117]:
+        - heading "Ready to Simplify Your CPE Tracking?" [level=2] [ref=e118]
+        - paragraph [ref=e119]: Join thousands of CPAs who have stopped worrying about CPE compliance.
+        - generic [ref=e120]:
+          - link "Get Started Free" [ref=e121] [cursor=pointer]:
+            - /url: /sign-up
+            - button "Get Started Free" [ref=e122]
+          - link "Read FAQ" [ref=e123] [cursor=pointer]:
+            - /url: /faq
+            - button "Read FAQ" [ref=e124]
+    - contentinfo [ref=e125]:
+      - generic [ref=e127]:
+        - paragraph [ref=e128]: © 2026 Organize My CPE. All rights reserved.
+        - generic [ref=e129]:
+          - link "Privacy Policy" [ref=e130] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms of Service" [ref=e131] [cursor=pointer]:
+            - /url: /terms
+          - link "FAQ" [ref=e132] [cursor=pointer]:
+            - /url: /faq
+  - alert [ref=e133]
+```

@@ -1,0 +1,106 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "OrganizeMyCPE" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: OrganizeMyCPE
+        - link "Back to home" [ref=e8] [cursor=pointer]:
+          - /url: /
+          - img [ref=e9]
+          - text: Back to home
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - heading "Simple, transparent pricing" [level=1] [ref=e14]
+          - paragraph [ref=e15]: Less than a single CPE course. Cancel anytime.
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - heading "Free" [level=3] [ref=e18]
+            - paragraph [ref=e19]: Get started for free
+            - generic [ref=e20]: $0/forever
+            - list [ref=e21]:
+              - listitem [ref=e22]:
+                - img [ref=e23]
+                - generic [ref=e25]: Up to 10 document uploads
+              - listitem [ref=e26]:
+                - img [ref=e27]
+                - generic [ref=e29]: 1 state compliance tracking
+              - listitem [ref=e30]:
+                - img [ref=e31]
+                - generic [ref=e33]: Basic compliance dashboard
+              - listitem [ref=e34]:
+                - img [ref=e35]
+                - generic [ref=e37]: AI certificate extraction
+            - link "Get started" [ref=e38] [cursor=pointer]:
+              - /url: /sign-up
+          - generic [ref=e39]:
+            - generic [ref=e40]: Most popular
+            - heading "Pro" [level=3] [ref=e41]
+            - paragraph [ref=e42]: Full access, all features
+            - generic [ref=e43]: $9.99/year
+            - list [ref=e44]:
+              - listitem [ref=e45]:
+                - img [ref=e46]
+                - generic [ref=e48]:
+                  - strong [ref=e49]: Unlimited
+                  - text: document uploads
+              - listitem [ref=e50]:
+                - img [ref=e51]
+                - generic [ref=e53]:
+                  - strong [ref=e54]: All 50 states
+                  - text: + DC compliance
+              - listitem [ref=e55]:
+                - img [ref=e56]
+                - generic [ref=e58]: Full compliance dashboard
+              - listitem [ref=e59]:
+                - img [ref=e60]
+                - generic [ref=e62]: AI certificate extraction
+              - listitem [ref=e63]:
+                - img [ref=e64]
+                - generic [ref=e66]: Export to CSV, XLSX
+              - listitem [ref=e67]:
+                - img [ref=e68]
+                - generic [ref=e70]: State-specific audit reports
+              - listitem [ref=e71]:
+                - img [ref=e72]
+                - generic [ref=e74]: Priority support
+            - link "Get Pro" [ref=e75] [cursor=pointer]:
+              - /url: /sign-up
+        - generic [ref=e76]:
+          - heading "Frequently asked questions" [level=2] [ref=e77]
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - heading "Can I cancel anytime?" [level=3] [ref=e80]
+              - paragraph [ref=e81]: Yes! You can cancel your subscription at any time. Your access continues until the end of your billing period.
+            - generic [ref=e82]:
+              - heading "What payment methods do you accept?" [level=3] [ref=e83]
+              - paragraph [ref=e84]: We accept all major credit cards (Visa, Mastercard, American Express) through our secure payment processor, Stripe.
+            - generic [ref=e85]:
+              - heading "Do you offer refunds?" [level=3] [ref=e86]
+              - paragraph [ref=e87]: Yes, we offer a 30-day money-back guarantee. If you're not satisfied, contact us for a full refund.
+            - generic [ref=e88]:
+              - heading "Is my data secure?" [level=3] [ref=e89]
+              - paragraph [ref=e90]: Absolutely. We use bank-level AES-256 encryption for all documents. Your certificates are stored securely and never shared.
+        - generic [ref=e91]:
+          - heading "Ready to simplify your CPE tracking?" [level=2] [ref=e92]
+          - paragraph [ref=e93]: Join thousands of CPAs who trust OrganizeMyCPE.
+          - link "Start for free" [ref=e94] [cursor=pointer]:
+            - /url: /sign-up
+    - contentinfo [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - text: OrganizeMyCPE
+          - paragraph [ref=e98]: © 2025 Organize My CPE. All rights reserved.
+        - generic [ref=e99]:
+          - link "Privacy" [ref=e100] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=e101] [cursor=pointer]:
+            - /url: /terms
+          - link "FAQ" [ref=e102] [cursor=pointer]:
+            - /url: /faq
+  - alert [ref=e103]
+```

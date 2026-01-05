@@ -12,7 +12,7 @@ const siteUrl = "https://organizemycpe.com"
 
 export const metadata: Metadata = {
   title: {
-    default: "Organize My CPE - CPE Tracking Software for CPAs | Compliance Made Easy",
+    default: "Organize My CPE - CPE Tracking for CPAs",
     template: "%s | Organize My CPE",
   },
   description:
