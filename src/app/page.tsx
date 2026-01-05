@@ -224,8 +224,8 @@ export default function LandingPage() {
                  </div>
               </div>
             </div>
-            {/* Glow effect behind */}
-            <div className="absolute -top-12 left-1/2 -z-10 h-[300px] w-[600px] -translate-x-1/2 bg-brand-primary/20 blur-[100px]"></div>
+            {/* Glow effect behind - responsive width */}
+            <div className="absolute -top-12 left-1/2 -z-10 h-[300px] w-full max-w-[600px] -translate-x-1/2 bg-brand-primary/20 blur-[100px]"></div>
           </div>
         </div>
       </section>
